@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Vehicle from "./pages/Vehicle";
 import Dispatch from "./pages/Dispatch";
 import Settings from "./pages/Settings";
-import VehicleList from "./pages/Vehicle/vehicleList";
+import VehicleList from "./pages/Vehicle/VehicleList";
 import VehicleAdd from "./pages/Vehicle/vehicleAdd";
 
 function App() {

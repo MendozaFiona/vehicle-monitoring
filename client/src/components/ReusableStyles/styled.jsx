@@ -39,6 +39,17 @@ export const StyledButton = styled.button`
   border: 1px solid #17252a;
 `;
 
+export const StyledInputIcon = styled.div`
+  position: relative;
+  .icon {
+    position: absolute;
+    right: 23px;
+    top: 22px;
+    color: white;
+    opacity: 0.5;
+  }
+`;
+
 export const StyledForm = styled.form`
   label {
     color: #17252a;
