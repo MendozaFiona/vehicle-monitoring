@@ -20,7 +20,7 @@ const vehicleSchema = mongoose.Schema(
       required: [true, "Please add vehicle model"],
     },
     year: {
-      type: String,
+      type: Number,
       required: [true, "Please add vehicle year"],
     },
     type_vehicle: {
@@ -28,7 +28,7 @@ const vehicleSchema = mongoose.Schema(
       required: [true, "Please add vehicle type"],
     },
     vehicle_capacity: {
-      type: String,
+      type: Number,
       required: [true, "Please add vehicle capacity"],
     },
     fuel_type: {
@@ -36,7 +36,7 @@ const vehicleSchema = mongoose.Schema(
       required: [true, "Please add vehicle fuel type"],
     },
     fuel_tank: {
-      type: String,
+      type: Number,
       required: [true, "Please add vehicle fuel tank"],
     },
     status: {
