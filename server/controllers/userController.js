@@ -7,8 +7,7 @@ const User = require("../models/userModel");
 // @route GET /api/users
 // @access Private
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email, username } = await User.findById(req.user.id);
-  res.status(200).json({ id: _id, name, email, username });
+  res.status(200).json(req.user);
 });
 
 // @desc Create user
@@ -99,14 +98,12 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route PUT /api/users/:id
 // @access Private
 const updateUser = asyncHandler(async (req, res) => {
-  const { _id, name, email, username } = await User.findById(req.user.id);
-
-  if (!_id) {
+  if (!req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
   }
 
-  const updatedUser = await User.findByIdAndUpdate(_id, req.body, {
+  const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
     new: true,
   });
 
@@ -117,14 +114,12 @@ const updateUser = asyncHandler(async (req, res) => {
 // @route DELETE /api/users/:id
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user.id);
-
-  if (!user) {
+  if (!req.user) {
     res.status(400);
     throw new Error("User not authorized");
   }
 
-  await user.deleteOne();
+  await req.user.deleteOne();
   res.status(200).json({ id: req.user.id });
 });
 
