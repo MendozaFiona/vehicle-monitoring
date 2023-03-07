@@ -1,28 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getVehicles, reset } from "../../../features/vehicle/vehicleSlice";
 import { StyledAccordion } from "./styled";
 
-const sampleItems = [
-  {
-    id: 1,
-    name: "Item 1",
-    desc: "Item 1 description",
-  },
-  {
-    id: 2,
-    name: "Item 2",
-    desc: "Item 2 description",
-  },
-];
-
 const VehicleItem = () => {
+  const dispatch = useDispatch();
+  const { vehicles, isLoading, isError, message } = useSelector(
+    (state) => state.vehicles
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+    dispatch(getVehicles);
+
+    return () => {
+      dispatch(reset);
+    };
+  }, [isError, message, dispatch]);
+
+  if (isLoading) {
+    // fgx modify
+    return <div aria-busy="true"></div>;
+  }
+
+  const noVehicles = <div>This user has no vehicles added</div>;
+
   return (
     <>
-      {sampleItems.map((item) => (
-        <StyledAccordion key={item.id}>
-          <summary>{item.name}</summary>
-          <p>{item.desc}</p>
-        </StyledAccordion>
-      ))}
+      {vehicles?.length > 0
+        ? vehicles.map((vehicle) => (
+            <StyledAccordion key={vehicle.id}>
+              <summary>{vehicle.name}</summary>
+              <p>{vehicle.desc}</p>
+            </StyledAccordion>
+          ))
+        : noVehicles}
     </>
   );
 };
