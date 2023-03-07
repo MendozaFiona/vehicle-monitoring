@@ -39,6 +39,9 @@ const vehicleSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add vehicle fuel tank"],
     },
+    status: {
+      type: String,
+    },
   },
   {
     timestamps: true,
