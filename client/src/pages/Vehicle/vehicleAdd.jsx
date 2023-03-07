@@ -21,7 +21,7 @@ const VehicleAdd = () => {
     brand,
     model,
     year,
-    type_vehicle,
+    vehicle_type,
     vehicle_capacity,
     fuel_type,
     fuel_tank,
@@ -123,12 +123,12 @@ const VehicleAdd = () => {
           </div>
 
           <div className="grid">
-            <label htmlFor="type_vehicle">
+            <label htmlFor="vehicle_type">
               Vehicle Type
               <select
-                value={type_vehicle}
-                id="type_vehicle"
-                name="type_vehicle"
+                value={vehicle_type}
+                id="vehicle_type"
+                name="vehicle_type"
                 required
                 onChange={handleChange}
               >

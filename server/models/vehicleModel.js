@@ -23,7 +23,7 @@ const vehicleSchema = mongoose.Schema(
       type: Number,
       required: [true, "Please add vehicle year"],
     },
-    type_vehicle: {
+    vehicle_type: {
       type: String,
       required: [true, "Please add vehicle type"],
     },

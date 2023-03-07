@@ -37,7 +37,8 @@ const VehicleItem = () => {
               <p>{vehicle.brand}</p>
               <p>{vehicle.model}</p>
               <p>{vehicle.year}</p>
-              <p>{vehicle.type_vehicle}</p>
+              <p>{vehicle.vehicle_type}</p>
+              <p>{vehicle.vehicle_capacity}</p>
               <p>{vehicle.fuel_type}</p>
               <p>{vehicle.fuel_tank}</p>
               {/* <p>{vehicle.status}</p> not added yet */}
