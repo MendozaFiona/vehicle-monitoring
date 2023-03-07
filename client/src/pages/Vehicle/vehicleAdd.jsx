@@ -1,36 +1,21 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addVehicle } from "../../features/vehicle/vehicleSlice";
+import { toast } from "react-toastify";
 import {
   StyledCard,
   StyledCardHeading,
   StyledForm,
   StyledCardContent,
 } from "../../components/ReusableStyles/styled";
-
-/* 
-  platenum
-  brand
-  model
-  year
-  type_vehicle
-  vehicle_capacity
-  fuel_type
-  fuel_tank
-  status - not included
-*/
+import {
+  vehicleTypeOptions,
+  fuelTypeOptions,
+  initialVehicleData,
+} from "../../utils/data";
 
 const VehicleAdd = () => {
-  const [formData, setFormData] = useState({
-    platenum: "",
-    brand: "",
-    model: "",
-    year: "",
-    type_vehicle: "",
-    vehicle_capacity: "",
-    fuel_type: "",
-    fuel_tank: "",
-  });
+  const [formData, setFormData] = useState(initialVehicleData);
   const {
     platenum,
     brand,
@@ -43,6 +28,9 @@ const VehicleAdd = () => {
   } = formData;
 
   const dispatch = useDispatch();
+  const { isError, isLoading, isSuccess, message } = useSelector(
+    (state) => state.vehicles
+  );
 
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -51,15 +39,23 @@ const VehicleAdd = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userData = {
       ...formData,
     };
 
-    dispatch(addVehicle(userData));
-    setFormData({});
+    await dispatch(addVehicle(userData));
+
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      toast.success("Successfully Added Vehicle");
+      setFormData(initialVehicleData);
+    }
   };
 
   return (
@@ -136,18 +132,22 @@ const VehicleAdd = () => {
                 required
                 onChange={handleChange}
               >
-                <option value="a">a</option>
-                <option value="b">b</option>
+                {vehicleTypeOptions.map((option) => (
+                  <option key={option.id} value={option.name}>
+                    {option.name}
+                  </option>
+                ))}
               </select>
             </label>
             <label htmlFor="vehicle_capacity">
-              Vehicle Capacity
+              Vehicle Capacity (kg)
               <input
-                type="text"
+                type="number"
+                step="any"
                 id="vehicle_capacity"
                 name="vehicle_capacity"
                 value={vehicle_capacity}
-                placeholder="Vehicle Capacity"
+                placeholder="Vehicle Capacity (kg)"
                 required
                 onChange={handleChange}
               />
@@ -164,19 +164,23 @@ const VehicleAdd = () => {
                 required
                 onChange={handleChange}
               >
-                <option value="a">a</option>
-                <option value="b">b</option>
+                {fuelTypeOptions.map((option) => (
+                  <option key={option.id} value={option.name}>
+                    {option.name}
+                  </option>
+                ))}
               </select>
             </label>
 
             <label htmlFor="fuel_tank">
-              Fuel Tank
+              Fuel Tank (L)
               <input
-                type="text"
+                type="number"
+                step="any"
                 id="fuel_tank"
                 name="fuel_tank"
                 value={fuel_tank}
-                placeholder="Fuel Tank"
+                placeholder="Fuel Tank (L)"
                 required
                 onChange={handleChange}
               />
@@ -196,7 +200,9 @@ const VehicleAdd = () => {
           </label>
         </fieldset> */}
 
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={isLoading}>
+            Submit
+          </button>
         </StyledForm>
       </StyledCardContent>
     </StyledCard>

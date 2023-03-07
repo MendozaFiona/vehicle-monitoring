@@ -10,10 +10,11 @@ const VehicleItem = () => {
   );
 
   useEffect(() => {
+    dispatch(getVehicles());
+
     if (isError) {
       console.log(message);
     }
-    dispatch(getVehicles);
 
     return () => {
       dispatch(reset);
@@ -31,9 +32,15 @@ const VehicleItem = () => {
     <>
       {vehicles?.length > 0
         ? vehicles.map((vehicle) => (
-            <StyledAccordion key={vehicle.id}>
-              <summary>{vehicle.name}</summary>
-              <p>{vehicle.desc}</p>
+            <StyledAccordion key={vehicle._id}>
+              <summary>{vehicle.platenum}</summary>
+              <p>{vehicle.brand}</p>
+              <p>{vehicle.model}</p>
+              <p>{vehicle.year}</p>
+              <p>{vehicle.type_vehicle}</p>
+              <p>{vehicle.fuel_type}</p>
+              <p>{vehicle.fuel_tank}</p>
+              {/* <p>{vehicle.status}</p> not added yet */}
             </StyledAccordion>
           ))
         : noVehicles}
