@@ -30,7 +30,6 @@ const Login = () => {
       toast.error(message);
     }
     if (!isLoading && (isSuccess || user)) {
-      console.log(isSuccess, user);
       navigate("/vehicle");
     }
     dispatch(reset());

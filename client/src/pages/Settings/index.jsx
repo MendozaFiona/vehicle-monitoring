@@ -25,7 +25,6 @@ const Settings = () => {
   const handleChangePass = (e) => {
     e.preventDefault();
     setPassChangeDisabled(!passChangeDisabled);
-    console.log("enable change password");
   };
 
   return (
