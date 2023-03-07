@@ -17,7 +17,7 @@ const VehicleItem = () => {
     <>
       {sampleItems.map((item) => (
         <StyledAccordion>
-          <summary role="button">{item.name}</summary>
+          <summary>{item.name}</summary>
           <p>{item.desc}</p>
         </StyledAccordion>
       ))}
