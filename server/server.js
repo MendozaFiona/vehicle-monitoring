@@ -15,6 +15,7 @@ app.use(express.json()); // middleware to read json body
 app.use(express.urlencoded({ extended: false })); // middleware to read url encoded body
 
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/vehicles", require("./routes/vehicleRoutes"));
 
 app.use(errorHandler); // middleware for configured express errorhandling
 

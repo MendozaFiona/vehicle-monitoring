@@ -2,14 +2,6 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
-    /*
-      on other schema where user is connected/associated (ex. tasks):
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-      },
-    */
     name: {
       type: String,
       required: [true, "Please add a name"],
