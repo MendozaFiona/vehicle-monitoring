@@ -9,7 +9,24 @@ export const StyledAccordion = styled.details`
   * {
     color: white !important;
   }
-  
+
+  summary {
+    position: relative;
+
+    .grid {
+      position: absolute;
+      top: -10px;
+      right: 50px;
+      grid-template-columns: 130px 130px;
+
+      button {
+        max-height: 40px;
+        width: 100%;
+        padding: 5px 0;
+      }
+    }
+  }
+
   summary::after {
     background-color: white;
     border-radius: 5px;

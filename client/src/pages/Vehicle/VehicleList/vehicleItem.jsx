@@ -33,7 +33,13 @@ const VehicleItem = () => {
       {vehicles?.length > 0
         ? vehicles.map((vehicle) => (
             <StyledAccordion key={vehicle._id}>
-              <summary>{vehicle.platenum}</summary>
+              <summary>
+                {vehicle.platenum}
+                <div className="grid">
+                  <button>EDIT</button>
+                  <button>DELETE</button>
+                </div>
+              </summary>
               <p>{vehicle.brand}</p>
               <p>{vehicle.model}</p>
               <p>{vehicle.year}</p>
