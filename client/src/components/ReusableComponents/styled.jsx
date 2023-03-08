@@ -96,13 +96,26 @@ export const StyledPopup = styled.div`
     .content {
       padding: 20px;
     }
+
+    .icon {
+      position: absolute;
+      right: 23px;
+      top: 20px;
+      cursor: pointer;
+    }
   }
 
   .form {
     width: 50%;
     margin: 70px auto;
+
     .content {
-      padding: 30px
+      padding: 30px;
+      padding-bottom: 10px;
+
+      button {
+        margin-top: 20px;
+      }
     }
   }
 

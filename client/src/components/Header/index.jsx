@@ -1,12 +1,20 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import StyledHeader, { StyledNav } from "./styled";
+import { reset, logout } from "../../features/user/userSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
-  const { pathname } = location;
   const { user } = useSelector((state) => state.user);
+  const { pathname } = location;
+
+  const handleLogout = async () => {
+    console.log("test");
+    await dispatch(logout());
+    dispatch(reset());
+  };
 
   return (
     <StyledHeader>
@@ -35,12 +43,30 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a
-                className={`${pathname === "/settings" ? "active" : null}`}
-                href="/settings"
-              >
-                Settings
-              </a>
+              <details role="list" dir="rtl">
+                <summary
+                  className={`${pathname === "/settings" ? "active" : null}`}
+                  aria-haspopup="listbox"
+                  role="link"
+                >
+                  Profile
+                </summary>
+                <ul role="listbox">
+                  <li>
+                    <a href="/settings">Settings</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/"
+                      onClick={() => {
+                        handleLogout();
+                      }}
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </details>
             </li>
           </ul>
         )}

@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout, reset } from "../../features/user/userSlice";
 import {
   StyledPageContent,
   StyledCard,
@@ -12,15 +9,7 @@ import {
 import { StyledInput } from "./styled";
 
 const Settings = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [passChangeDisabled, setPassChangeDisabled] = useState(true);
-
-  const handleLogout = async () => {
-    await dispatch(logout());
-    dispatch(reset());
-    navigate("/");
-  };
 
   const handleChangePass = (e) => {
     e.preventDefault();
@@ -53,10 +42,6 @@ const Settings = () => {
               </StyledInput>
             </StyledForm>
           )}
-
-          <button type="submit" onClick={handleLogout}>
-            Logout
-          </button>
         </StyledCardContent>
       </StyledCard>
     </StyledPageContent>

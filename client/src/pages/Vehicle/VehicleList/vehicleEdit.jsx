@@ -58,7 +58,7 @@ const VehicleEdit = ({ data, setShow }) => {
         </div>
       ))}
       <button type="submit" disabled={isLoading}>
-        Submit
+        Update
       </button>
     </StyledForm>
   );
