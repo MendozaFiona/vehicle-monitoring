@@ -71,3 +71,41 @@ export const StyledForm = styled.form`
     border-color: #2b7a78;
   }
 `;
+
+export const StyledPopup = styled.div`
+  .overlay {
+    visibility: visible;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+  }
+  .popup {
+    margin: 300px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+    border: 10px solid #17252a;
+    width: 30%;
+    position: relative;
+    text-align: center;
+
+    .content {
+      padding:20px;
+    }
+
+    .grid {
+      grid-template-columns: auto auto;
+      padding: 15px 30px 0 30px;
+
+      button {
+        padding-top: 10px;
+        max-height: 50px;
+      }
+    }
+  }
+`;
