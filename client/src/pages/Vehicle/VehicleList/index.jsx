@@ -4,7 +4,7 @@ import {
   StyledCardContent,
   StyledInputIcon,
   StyledCardHeading,
-} from "../../../components/ReusableStyles/styled";
+} from "../../../components/ReusableComponents/styled";
 import { StyledSearch, StyledSearchButton } from "../styled";
 import { FaSearch } from "react-icons/fa";
 import VehicleItem from "./vehicleItem";

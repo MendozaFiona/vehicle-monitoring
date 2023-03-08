@@ -8,7 +8,9 @@ import {
   StyledCard,
   StyledForm,
   StyledCardContent,
-} from "../../components/ReusableStyles/styled";
+} from "../../components/ReusableComponents/styled";
+import FormInput from "../../components/ReusableComponents/formInput";
+import { loginformData } from "../../utils/data";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -63,33 +65,9 @@ const Login = () => {
       <StyledCard>
         <StyledCardContent>
           <StyledForm onSubmit={handleSubmit}>
-            <label htmlFor="email">
-              Email
-              <input
-                type="text"
-                name="email"
-                value={email}
-                placeholder="Email"
-                aria-label="Email"
-                autoComplete="on"
-                required
-                onChange={handleChange}
-              />
-            </label>
-            <label htmlFor="password">
-              Password
-              <input
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                aria-label="Password"
-                autoComplete="off"
-                required
-                onChange={handleChange}
-              />
-            </label>
-
+            {loginformData.map((item) => (
+              <FormInput key={item.name} data={item} onChange={handleChange} />
+            ))}
             <button type="submit">Login</button>
           </StyledForm>
         </StyledCardContent>

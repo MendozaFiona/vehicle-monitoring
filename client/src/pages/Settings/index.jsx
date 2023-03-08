@@ -8,7 +8,7 @@ import {
   StyledCardHeading,
   StyledCardContent,
   StyledForm,
-} from "../../components/ReusableStyles/styled";
+} from "../../components/ReusableComponents/styled";
 import { StyledInput } from "./styled";
 
 const Settings = () => {
