@@ -1,28 +1,30 @@
 import React from "react";
 import { StyledPopup } from "./styled";
 
-const Popup = ({ textContent, func, setShow }) => {
+const Popup = ({ content, type, func, setShow }) => {
   return (
     <StyledPopup>
       <div className="overlay">
-        <div className="popup">
-          <div className="content">{textContent}</div>
-          <div className="grid">
-            <button
-              onClick={() => {
-                func();
-              }}
-            >
-              YES
-            </button>
-            <button
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              NO
-            </button>
-          </div>
+        <div className={`popup ${type}`}>
+          <div className="content">{content}</div>
+          {type === "confirm" && (
+            <div className="grid">
+              <button
+                onClick={() => {
+                  func();
+                }}
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => {
+                  setShow(false);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </StyledPopup>

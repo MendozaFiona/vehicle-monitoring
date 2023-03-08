@@ -6,12 +6,14 @@ import {
   deleteVehicle,
   reset,
 } from "../../../features/vehicle/vehicleSlice";
+import VehicleEdit from "./vehicleEdit";
 import { StyledAccordion } from "./styled";
 import Popup from "../../../components/ReusableComponents/popup";
 
 const VehicleItem = () => {
   const dispatch = useDispatch();
-  const [show, setShow] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupContent, setPopupContent] = useState(null);
   const [selectedId, setSelectedId] = useState("");
   const { vehicles, isLoading, isError, message } = useSelector(
     (state) => state.vehicles
@@ -34,17 +36,36 @@ const VehicleItem = () => {
     return <div aria-busy="true"></div>;
   }
 
-  const handleDelete = (id) => {
-    setShow(true);
+  const handlePopup = ({ id, data, method }) => {
+    if (method === "edit") {
+      const { createdAt, updatedAt, user, __v, ...newData } = data;
+      setPopupContent(
+        <Popup
+          content={<VehicleEdit data={newData} setShow={setShowPopup} />}
+          type="form"
+          setShow={setShowPopup}
+        />
+      );
+    } else if (method === "delete") {
+      setPopupContent(
+        <Popup
+          content="Delete vehicle?"
+          type="confirm"
+          func={handleDelete}
+          setShow={setShowPopup}
+        />
+      );
+    }
+    setShowPopup(true);
     setSelectedId(id);
   };
 
-  const handleRemove = async () => {
+  const handleDelete = async () => {
     const res = await dispatch(deleteVehicle(selectedId));
     if (!res.error) {
       toast.success("Successfully deleted");
     }
-    setShow(false);
+    setShowPopup(false);
     setSelectedId("");
   };
 
@@ -52,30 +73,34 @@ const VehicleItem = () => {
 
   return (
     <>
-      {show && (
-        <Popup
-          textContent="Are you sure you wanna delete?"
-          func={handleRemove}
-          setShow={setShow}
-        />
-      )}
+      {showPopup && popupContent}
       {vehicles?.length > 0
         ? vehicles.map((vehicle) => (
             <StyledAccordion key={vehicle._id}>
               <summary>
                 {vehicle.platenum}
                 <div className="grid">
-                  <button>EDIT</button>
                   <button
                     onClick={() => {
-                      handleDelete(vehicle._id);
+                      handlePopup({
+                        id: vehicle._id,
+                        data: vehicle,
+                        method: "edit",
+                      });
+                    }}
+                  >
+                    EDIT
+                  </button>
+                  <button
+                    onClick={() => {
+                      handlePopup({ id: vehicle._id, method: "delete" });
                     }}
                   >
                     DELETE
                   </button>
                 </div>
               </summary>
-              <div className="table-data">
+              <div className="fm-table-data">
                 <table>
                   <thead>
                     <tr>

@@ -10,7 +10,7 @@ export const StyledAccordion = styled.details`
     color: white !important;
   }
 
-  .table-data {
+  .fm-table-data {
     padding-top: 20px;
     overflow-y: auto;
   }

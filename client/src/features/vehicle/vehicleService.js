@@ -31,14 +31,14 @@ const getVehicles = async (token) => {
 
 // update vehicle
 const updateVehicle = async (vehicleData, token) => {
-  const { vehicleId } = vehicleData;
+  const { _id } = vehicleData;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const response = await axios.delete(API_URL + vehicleId, vehicleData, config);
+  const response = await axios.put(API_URL + _id, vehicleData, config);
 
   return response.data;
 };
