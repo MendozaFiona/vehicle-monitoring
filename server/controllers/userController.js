@@ -95,12 +95,19 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 // @desc Update user
-// @route PUT /api/users/:id
+// @route PUT /api/users/
 // @access Private
 const updateUser = asyncHandler(async (req, res) => {
   if (!req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
+  }
+
+  if (req.body.password) {
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    req.body.password = hashedPassword;
   }
 
   const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   StyledPageContent,
   StyledCard,
@@ -7,13 +8,29 @@ import {
   StyledForm,
 } from "../../components/ReusableComponents/styled";
 import { StyledInput } from "./styled";
+import { updateUser } from "../../features/user/userSlice";
+import { toast } from "react-toastify";
 
 const Settings = () => {
+  const dispatch = useDispatch();
   const [passChangeDisabled, setPassChangeDisabled] = useState(true);
+  const [passChange, setPassChange] = useState("");
 
-  const handleChangePass = (e) => {
-    e.preventDefault();
+  const handleChangePass = () => {
     setPassChangeDisabled(!passChangeDisabled);
+    setPassChange("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await dispatch(updateUser({ password: passChange }));
+    console.log(res);
+    if (!res.error) {
+      toast.success("Successfully Changed");
+      handleChangePass();
+    } else {
+      toast.error(res.payload);
+    }
   };
 
   return (
@@ -25,13 +42,18 @@ const Settings = () => {
             <button onClick={handleChangePass}>Change Password</button>
           )}
           {!passChangeDisabled && (
-            <StyledForm onSubmit={handleChangePass}>
+            <StyledForm onSubmit={handleSubmit}>
               <StyledInput>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="change password"
+                  placeholder="Change Password"
+                  autoComplete="off"
+                  value={passChange}
+                  onChange={(e) => {
+                    setPassChange(e.target.value);
+                  }}
                   disabled={passChangeDisabled}
                   required
                 />

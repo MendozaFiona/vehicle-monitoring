@@ -47,7 +47,7 @@ export const getVehicles = createAsyncThunk(
   }
 );
 
-// updated vehicle
+// update vehicle
 export const updateVehicle = createAsyncThunk(
   "vehicles/update",
   async (vehicleData, thunkAPI) => {

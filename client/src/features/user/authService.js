@@ -18,9 +18,23 @@ const logout = async () => {
   localStorage.removeItem("user"); // there's other way, use server and set http only cookie
 };
 
+// Update user
+const updateUser = async (userData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(API_URL, userData, config);
+
+  return response.data;
+};
+
 const authService = {
   login,
   logout,
+  updateUser
 };
 
 export default authService;
