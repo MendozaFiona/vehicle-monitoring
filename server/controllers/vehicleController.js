@@ -28,9 +28,29 @@ const getVehicles = asyncHandler(async (req, res) => {
 // @route POST /api/vehicles
 // @access Private
 const addVehicle = asyncHandler(async (req, res) => {
-  if (!req.body) {
+  const {
+    platenum,
+    brand,
+    model,
+    year,
+    vehicle_type,
+    vehicle_capacity,
+    fuel_type,
+    fuel_tank,
+  } = req.body;
+
+  if (
+    !platenum ||
+    !brand ||
+    !model ||
+    !year ||
+    !vehicle_type ||
+    !vehicle_capacity ||
+    !fuel_type ||
+    !fuel_tank
+  ) {
     res.status(400);
-    throw new Error("Please fill all fields");
+    throw new Error("Please add all fields");
   }
 
   const vehicle = await Vehicle.create({
@@ -78,7 +98,7 @@ const updateVehicle = asyncHandler(async (req, res) => {
 // @access Private
 const deleteVehicle = asyncHandler(async (req, res) => {
   const vehicle = await Vehicle.findById(req.params.id);
-  if (!vehicle) {
+  if (!vehicle || !req.params.id || req.params.id === "") {
     res.status(400);
     throw new Error("Vehicle not found");
   }

@@ -15,9 +15,7 @@ const VehicleAdd = () => {
   const [formData, setFormData] = useState(initialVehicleData);
 
   const dispatch = useDispatch();
-  const { isError, isLoading, isSuccess, message } = useSelector(
-    (state) => state.vehicles
-  );
+  const { isLoading } = useSelector((state) => state.vehicles);
 
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -33,15 +31,13 @@ const VehicleAdd = () => {
       ...formData,
     };
 
-    await dispatch(addVehicle(userData));
+    const res = await dispatch(addVehicle(userData));
 
-    if (isError) {
-      toast.error(message);
-    }
-
-    if (isSuccess) {
+    if (!res.error) {
       toast.success("Successfully Added Vehicle");
       setFormData(initialVehicleData);
+    } else {
+      toast.error(res.payload);
     }
   };
 

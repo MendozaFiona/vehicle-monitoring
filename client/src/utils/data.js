@@ -15,9 +15,9 @@ export const initialVehicleData = {
   brand: "",
   model: "",
   year: "",
-  vehicle_type: "",
+  vehicle_type: vehicleTypeOptions[0].name,
   vehicle_capacity: "",
-  fuel_type: "",
+  fuel_type: fuelTypeOptions[0].name,
   fuel_tank: "",
 };
 

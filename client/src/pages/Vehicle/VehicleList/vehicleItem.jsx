@@ -14,7 +14,6 @@ const VehicleItem = () => {
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState(null);
-  const [selectedId, setSelectedId] = useState("");
   const { vehicles, isLoading, isError, message } = useSelector(
     (state) => state.vehicles
   );
@@ -27,6 +26,7 @@ const VehicleItem = () => {
     }
 
     return () => {
+      console.log("un/mount vehicle list");
       dispatch(reset());
     };
   }, [isError, message, dispatch]);
@@ -36,7 +36,7 @@ const VehicleItem = () => {
     return <div aria-busy="true"></div>;
   }
 
-  const handlePopup = ({ id, data, method }) => {
+  const handlePopup = ({ data, method }) => {
     if (method === "edit") {
       const { createdAt, updatedAt, user, __v, ...newData } = data;
       setPopupContent(
@@ -51,22 +51,22 @@ const VehicleItem = () => {
         <Popup
           content="Delete vehicle?"
           type="confirm"
-          func={handleDelete}
+          func={() => {
+            handleDelete(data._id);
+          }}
           setShow={setShowPopup}
         />
       );
     }
     setShowPopup(true);
-    setSelectedId(id);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (selectedId) => {
     const res = await dispatch(deleteVehicle(selectedId));
     if (!res.error) {
       toast.success("Successfully deleted");
     }
     setShowPopup(false);
-    setSelectedId("");
   };
 
   const noVehicles = <div>This user has no vehicles added</div>;
@@ -83,7 +83,6 @@ const VehicleItem = () => {
                   <button
                     onClick={() => {
                       handlePopup({
-                        id: vehicle._id,
                         data: vehicle,
                         method: "edit",
                       });
@@ -93,7 +92,7 @@ const VehicleItem = () => {
                   </button>
                   <button
                     onClick={() => {
-                      handlePopup({ id: vehicle._id, method: "delete" });
+                      handlePopup({ data: vehicle, method: "delete" });
                     }}
                   >
                     DELETE

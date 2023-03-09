@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import StyledHeader, { StyledNav } from "./styled";
 import { reset, logout } from "../../features/user/userSlice";
+import { reset as vehicleReset } from "../../features/vehicle/vehicleSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -11,9 +12,9 @@ const Header = () => {
   const { pathname } = location;
 
   const handleLogout = async () => {
-    console.log("test");
-    await dispatch(logout());
+    dispatch(logout());
     dispatch(reset());
+    dispatch(vehicleReset()); // FGX
   };
 
   return (
