@@ -16,15 +16,15 @@ const addVehicle = async (vehicleData, token) => {
 };
 
 // get user vehicles
-const getVehicles = async (token) => {
-  // please add filters
+const getVehicles = async (params, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  // not final, need filters
-  const response = await axios.get(API_URL, config);
+
+  const url = params ? API_URL + params : API_URL;
+  const response = await axios.get(url, config);
 
   return response.data;
 };

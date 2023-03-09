@@ -1,4 +1,4 @@
-const FormInput = ({ data, value = undefined, onChange }) => {
+const FormInput = ({ data, value = undefined, onChange, required = true }) => {
   let divContent;
 
   const checkDataType = () => {
@@ -12,7 +12,7 @@ const FormInput = ({ data, value = undefined, onChange }) => {
           value={value}
           placeholder={data.label}
           autoComplete={data.autoComplete || "on"}
-          required
+          required={required}
           onChange={onChange}
         />
       );
@@ -27,7 +27,7 @@ const FormInput = ({ data, value = undefined, onChange }) => {
         name={data.name}
         value={value}
         placeholder={data.label}
-        required
+        required={required}
         onChange={onChange}
       />;
     }
@@ -45,7 +45,7 @@ const FormInput = ({ data, value = undefined, onChange }) => {
           value={value}
           id={data.name}
           name={data.name}
-          required
+          required={required}
           onChange={onChange}
         >
           {data.options.map((option) => (

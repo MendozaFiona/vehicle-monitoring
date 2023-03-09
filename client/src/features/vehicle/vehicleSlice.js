@@ -31,10 +31,10 @@ export const addVehicle = createAsyncThunk(
 // get vehicles
 export const getVehicles = createAsyncThunk(
   "vehicles/getAll",
-  async (_, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.user.token;
-      return await vehicleService.getVehicles(token);
+      return await vehicleService.getVehicles(params, token);
     } catch (error) {
       const message =
         (error.response &&
