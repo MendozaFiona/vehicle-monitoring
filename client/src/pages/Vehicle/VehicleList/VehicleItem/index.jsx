@@ -5,10 +5,11 @@ import {
   getVehicles,
   deleteVehicle,
   reset,
-} from "../../../features/vehicle/vehicleSlice";
+} from "../../../../features/vehicle/vehicleSlice";
 import VehicleEdit from "./vehicleEdit";
+import VehicleTable from "./vehicleTable";
 import { StyledAccordion } from "./styled";
-import Popup from "../../../components/ReusableComponents/popup";
+import Popup from "../../../../components/ReusableComponents/popup";
 
 const VehicleItem = () => {
   const dispatch = useDispatch();
@@ -99,32 +100,8 @@ const VehicleItem = () => {
                   </button>
                 </div>
               </summary>
-              <div className="fm-table-data">
-                <table>
-                  <thead>
-                    <tr>
-                      <th scope="col">Brand</th>
-                      <th scope="col">Model</th>
-                      <th scope="col">Year</th>
-                      <th scope="col">Vehicle Type</th>
-                      <th scope="col">Capacity</th>
-                      <th scope="col">Fuel Type</th>
-                      <th scope="col">Fuel Tank</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{vehicle.brand}</td>
-                      <td>{vehicle.model}</td>
-                      <td>{vehicle.year}</td>
-                      <td>{vehicle.vehicle_type}</td>
-                      <td>{vehicle.vehicle_capacity} kg</td>
-                      <td>{vehicle.fuel_type}</td>
-                      <td>{vehicle.fuel_tank} L</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <VehicleTable vehicle={vehicle} />
+
               {/* <p>{vehicle.status}</p> not added yet */}
             </StyledAccordion>
           ))
