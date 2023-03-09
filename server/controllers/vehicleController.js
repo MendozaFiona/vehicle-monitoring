@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Vehicle = require("../models/vehicleModel");
+const VehicleType = require("../models/vehicleTypeModel");
+const FuelType = require("../models/fuelTypeModel");
 const User = require("../models/userModel");
 
 // @desc Get vehicles by logged in user
@@ -22,6 +24,22 @@ const getVehicles = asyncHandler(async (req, res) => {
   }
 
   res.status(200).json(filteredVehicles);
+});
+
+// @desc Get vehicle types
+// @route GET /api/vehicles/vehicle-types
+// @access Public
+const getVehicleTypes = asyncHandler(async (req, res) => {
+  const vehicleTypes = await VehicleType.find();
+  res.status(200).json(vehicleTypes);
+});
+
+// @desc Get fuel types
+// @route GET /api/vehicles/fuel-types
+// @access Public
+const getFuelTypes = asyncHandler(async (req, res) => {
+  const fuelTypes = await VehicleType.find();
+  res.status(200).json(fuelTypes);
 });
 
 // @desc Create vehicle
@@ -122,6 +140,8 @@ const deleteVehicle = asyncHandler(async (req, res) => {
 
 module.exports = {
   getVehicles,
+  getVehicleTypes,
+  getFuelTypes,
   addVehicle,
   updateVehicle,
   deleteVehicle,
