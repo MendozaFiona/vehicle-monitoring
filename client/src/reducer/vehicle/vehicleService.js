@@ -23,7 +23,7 @@ const getVehicles = async (params, token) => {
     },
   };
 
-  const url = params ? API_URL + params : API_URL;
+  const url = params ? API_URL + `?${params}` : API_URL;
   const response = await axios.get(url, config);
 
   return response.data;

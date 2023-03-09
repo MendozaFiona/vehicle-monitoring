@@ -2,7 +2,7 @@ import React from "react";
 import {
   StyledPageContent,
   StyledButton,
-} from "../../components/ReusableComponents/styled";
+} from "../styled";
 import { StyledGrid, StyledNavigation } from "./styled";
 import { useNavigate, Outlet } from "react-router-dom";
 

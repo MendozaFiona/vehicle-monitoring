@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import { StyledSearchFilter, StyledGoButton } from "./styled";
-import FormInput from "../../../components/ReusableComponents/formInput";
-import { vehicleformData, initialVehicleData } from "../../../utils/data";
-import { paramsBuilder } from "../../../utils/functions";
+import FormInput from "../FormInput";
+import { vehicleformData, initialVehicleData } from "../../utils/data";
 import { useDispatch } from "react-redux";
-import { getVehicles } from "../../../features/vehicle/vehicleSlice";
+import { getVehicles } from "../../reducer/vehicle/vehicleSlice";
+import queryString from "query-string";
 
 const SearchFilter = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,10 @@ const SearchFilter = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const params = paramsBuilder(formData);
+    const newData = Object.fromEntries(
+      Object.entries(formData).filter(([key, value]) => value !== "")
+    );
+    const params = queryString.stringify(newData);
     dispatch(getVehicles(params));
   };
 

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateVehicle,
   getVehicles,
-} from "../../../../features/vehicle/vehicleSlice";
+} from "../../reducer/vehicle/vehicleSlice";
 import { toast } from "react-toastify";
-import { StyledForm } from "../../../../components/ReusableComponents/styled";
-import { vehicleformData } from "../../../../utils/data";
-import FormInput from "../../../../components/ReusableComponents/formInput";
+import { StyledForm } from "../styled";
+import { vehicleformData } from "../../utils/data";
+import FormInput from "../FormInput";
 
 const VehicleEdit = ({ data, setShow }) => {
   const [formData, setFormData] = useState(data);

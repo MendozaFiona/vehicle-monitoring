@@ -4,14 +4,14 @@ import {
   StyledCardContent,
   StyledInputIcon,
   StyledCardHeading,
-} from "../../../components/ReusableComponents/styled";
+} from "../../components/styled";
 import { StyledSearch, StyledSearchButton, StyledSearchGroup } from "./styled";
 import { FaSearch } from "react-icons/fa";
-import VehicleItem from "./VehicleItem";
-import SearchFilter from "./searchFilter";
-import { paramsBuilder } from "../../../utils/functions";
+import VehicleItem from "../../components/VehicleItem";
+import SearchFilter from "../../components/SearchFilter";
 import { useDispatch } from "react-redux";
-import { getVehicles } from "../../../features/vehicle/vehicleSlice";
+import { getVehicles } from "../../reducer/vehicle/vehicleSlice";
+import queryString from "query-string";
 
 const VehicleList = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,8 @@ const VehicleList = () => {
   const [plateNum, setPlateNum] = useState("");
 
   const handleSubmit = async () => {
-    const params = paramsBuilder({ platenum: plateNum });
+    const params =
+      plateNum !== "" ? queryString.stringify({ platenum: plateNum }) : null;
     dispatch(getVehicles(params));
   };
 

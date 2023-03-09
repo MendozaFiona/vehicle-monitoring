@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addVehicle } from "../../features/vehicle/vehicleSlice";
+import { addVehicle } from "../../reducer/vehicle/vehicleSlice";
 import { toast } from "react-toastify";
 import {
   StyledCard,
   StyledCardHeading,
   StyledForm,
   StyledCardContent,
-} from "../../components/ReusableComponents/styled";
+} from "../../components/styled";
 import { vehicleformData, initialVehicleData } from "../../utils/data";
-import FormInput from "../../components/ReusableComponents/formInput";
+import FormInput from "../../components/FormInput";
 
 const VehicleAdd = () => {
   const [formData, setFormData] = useState(initialVehicleData);

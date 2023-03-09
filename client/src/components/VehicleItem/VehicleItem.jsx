@@ -5,11 +5,11 @@ import {
   getVehicles,
   deleteVehicle,
   reset,
-} from "../../../../features/vehicle/vehicleSlice";
-import VehicleEdit from "./vehicleEdit";
-import VehicleTable from "./vehicleTable";
+} from "../../reducer/vehicle/vehicleSlice";
+import VehicleEdit from "../../components/VehicleEdit";
+import VehicleTable from "../../components/VehicleTable";
 import { StyledAccordion } from "./styled";
-import Popup from "../../../../components/ReusableComponents/popup";
+import Popup from "../../components/Popup";
 
 const VehicleItem = () => {
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const VehicleItem = () => {
     setShowPopup(false);
   };
 
-  const noVehicles = <div>This user has no vehicles added</div>;
+  const noVehicles = <div>No Vehicles Found.</div>;
 
   return (
     <>

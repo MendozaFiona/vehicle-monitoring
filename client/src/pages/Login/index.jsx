@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { login, reset } from "../../features/user/userSlice";
+import { login, reset } from "../../reducer/user/userSlice";
 import { toast } from "react-toastify";
 import {
   StyledPageContent,
   StyledCard,
   StyledForm,
   StyledCardContent,
-} from "../../components/ReusableComponents/styled";
-import FormInput from "../../components/ReusableComponents/formInput";
+} from "../../components/styled";
+import FormInput from "../../components/FormInput";
 import { loginformData } from "../../utils/data";
 
 const Login = () => {

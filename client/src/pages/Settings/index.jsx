@@ -6,9 +6,9 @@ import {
   StyledCardHeading,
   StyledCardContent,
   StyledForm,
-} from "../../components/ReusableComponents/styled";
+} from "../../components/styled";
 import { StyledInput } from "./styled";
-import { updateUser } from "../../features/user/userSlice";
+import { updateUser } from "../../reducer/user/userSlice";
 import { toast } from "react-toastify";
 
 const Settings = () => {

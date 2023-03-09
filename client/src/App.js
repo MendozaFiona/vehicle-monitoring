@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "./GlobalStyle";
-import RequireAuth from "./utils/requireAuth";
+import RequireAuth from "./components/RequireAuth";
 import Header from "./components/Header";
 import Login from "./pages/Login";
-import Vehicle from "./pages/Vehicle";
+import Vehicle from "./components/VehicleNavigation";
 import Dispatch from "./pages/Dispatch";
 import Settings from "./pages/Settings";
-import VehicleList from "./pages/Vehicle/VehicleList";
-import VehicleAdd from "./pages/Vehicle/vehicleAdd";
+import VehicleList from "./pages/VehicleList";
+import VehicleAdd from "./pages/VehicleAdd";
 
 function App() {
   return (

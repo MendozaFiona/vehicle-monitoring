@@ -4,7 +4,7 @@ import {
   StyledCard,
   StyledCardHeading,
   StyledCardContent,
-} from "../../components/ReusableComponents/styled";
+} from "../../components/styled";
 
 const Dispatch = () => (
   <StyledPageContent>
