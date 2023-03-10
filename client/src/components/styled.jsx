@@ -49,24 +49,26 @@ export const StyledInputIcon = styled.div`
   }
 `;
 
-export const StyledForm = styled.form`
-  label {
-    color: #17252a;
-  }
-  input:not(.fm-checkbox),
-  select {
-    max-height: 40px;
-    min-height: 40px;
-    border-radius: 20px;
-    background-color: #def2f1;
-    font-size: 16px;
-    padding: 0 15px;
-  }
-  .fm-checkbox {
-    margin-left: 10px;
-  }
-  .fm-checkbox:checked {
-    background-color: #2b7a78;
-    border-color: #2b7a78;
+export const StyledForm = styled.div`
+  form {
+    label {
+      color: #17252a;
+    }
+    input:not(.fm-checkbox),
+    select {
+      max-height: 40px;
+      min-height: 40px;
+      border-radius: 20px;
+      background-color: #def2f1;
+      font-size: 16px;
+      padding: 0 15px;
+    }
+    .fm-checkbox {
+      margin-left: 10px;
+    }
+    .fm-checkbox:checked {
+      background-color: #2b7a78;
+      border-color: #2b7a78;
+    }
   }
 `;

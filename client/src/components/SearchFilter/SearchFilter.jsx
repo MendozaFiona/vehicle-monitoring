@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 
-import { StyledSearchFilter, StyledGoButton } from "./styled";
-import FormInput from "../FormInput";
-import { vehicleformData, initialVehicleData } from "../../utils/data";
-import { useDispatch } from "react-redux";
+import { StyledSearchFilter } from "./styled";
+import VehicleForm from "../VehicleForm";
+import { initialVehicleData } from "../../utils/data";
+import { useDispatch, useSelector } from "react-redux";
 import { getVehicles } from "../../reducer/vehicle/vehicleSlice";
 import queryString from "query-string";
 
 const SearchFilter = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.vehicles);
   const [formData, setFormData] = useState(initialVehicleData);
-  const handleChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,22 +23,13 @@ const SearchFilter = () => {
 
   return (
     <StyledSearchFilter>
-      <form onSubmit={handleSubmit}>
-        {vehicleformData.map((pair, index) => (
-          <div key={index} className="grid">
-            {pair.map((item) => (
-              <FormInput
-                key={item.name}
-                data={item}
-                value={formData[item.name]}
-                onChange={handleChange}
-                required={false}
-              />
-            ))}
-          </div>
-        ))}
-        <StyledGoButton type="submit">Go</StyledGoButton>
-      </form>
+      <VehicleForm
+        isLoading={isLoading}
+        handleSubmit={handleSubmit}
+        formData={formData}
+        setFormData={setFormData}
+        buttonLabel="Go"
+      />
     </StyledSearchFilter>
   );
 };

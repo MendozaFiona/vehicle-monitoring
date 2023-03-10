@@ -9,8 +9,6 @@ import {
   StyledForm,
   StyledCardContent,
 } from "../../components/styled";
-import FormInput from "../../components/FormInput";
-import { loginformData } from "../../utils/data";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -64,11 +62,35 @@ const Login = () => {
     <StyledPageContent>
       <StyledCard>
         <StyledCardContent>
-          <StyledForm onSubmit={handleSubmit}>
-            {loginformData.map((item) => (
-              <FormInput key={item.name} data={item} onChange={handleChange} />
-            ))}
-            <button type="submit">Login</button>
+          <StyledForm>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="email">
+                Email
+                <input
+                  type="text"
+                  name="email"
+                  value={email}
+                  placeholder="Email"
+                  autoComplete="on"
+                  required
+                  onChange={handleChange}
+                />
+              </label>
+              <label htmlFor="password">
+                Password
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Password"
+                  autoComplete="off"
+                  required
+                  onChange={handleChange}
+                />
+              </label>
+
+              <button type="submit">Login</button>
+            </form>
           </StyledForm>
         </StyledCardContent>
       </StyledCard>

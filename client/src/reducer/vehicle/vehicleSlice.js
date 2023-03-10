@@ -106,6 +106,7 @@ export const vehicleSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+
       .addCase(getVehicles.pending, (state) => {
         state.isLoading = true;
       })
@@ -119,6 +120,7 @@ export const vehicleSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+
       .addCase(updateVehicle.pending, (state) => {
         state.isLoading = true;
       })
@@ -131,6 +133,7 @@ export const vehicleSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+
       .addCase(deleteVehicle.pending, (state) => {
         state.isLoading = true;
       })

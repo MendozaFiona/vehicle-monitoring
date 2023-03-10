@@ -5,24 +5,17 @@ import { toast } from "react-toastify";
 import {
   StyledCard,
   StyledCardHeading,
-  StyledForm,
   StyledCardContent,
+  StyledForm,
 } from "../../components/styled";
-import { vehicleformData, initialVehicleData } from "../../utils/data";
-import FormInput from "../../components/FormInput";
+import { initialVehicleData } from "../../utils/data";
+import VehicleForm from "../../components/VehicleForm";
 
 const VehicleAdd = () => {
   const [formData, setFormData] = useState(initialVehicleData);
 
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.vehicles);
-
-  const handleChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,35 +38,13 @@ const VehicleAdd = () => {
     <StyledCard>
       <StyledCardHeading>Add Vehicle</StyledCardHeading>
       <StyledCardContent>
-        <StyledForm onSubmit={handleSubmit}>
-          {vehicleformData.map((pair, index) => (
-            <div key={index} className="grid">
-              {pair.map((item) => (
-                <FormInput
-                  key={item.name}
-                  data={item}
-                  value={formData[item.name]}
-                  onChange={handleChange}
-                />
-              ))}
-            </div>
-          ))}
-          {/* <fieldset>
-          <label htmlFor="status">
-            Status
-            <input
-              className="fm-checkbox"
-              type="checkbox"
-              id="status"
-              name="status"
-              role="switch"
-            />
-          </label>
-        </fieldset> */}
-
-          <button type="submit" disabled={isLoading}>
-            Submit
-          </button>
+        <StyledForm>
+          <VehicleForm
+            isLoading={isLoading}
+            handleSubmit={handleSubmit}
+            formData={formData}
+            setFormData={setFormData}
+          />
         </StyledForm>
       </StyledCardContent>
     </StyledCard>

@@ -22,19 +22,19 @@ export const StyledSearchFilter = styled.div`
       background-color: #def2f1;
     }
   }
-`;
 
-export const StyledGoButton = styled.button`
-  background-color: #def2f1;
-  border-radius: 20px;
-  border: 0;
-  margin-top: 20px;
-  padding: 5px;
-  color: #17252a;
-  max-width: 80px;
-  min-width: 80px;
-  position: absolute;
-  bottom: 5px;
-  right: 50px;
-  font-weight: bold;
+  button {
+    background-color: #def2f1;
+    border-radius: 20px;
+    border: 0;
+    margin-top: 20px;
+    padding: 5px;
+    color: #17252a;
+    max-width: 80px;
+    min-width: 80px;
+    position: absolute;
+    bottom: 5px;
+    right: 50px;
+    font-weight: bold;
+  }
 `;
