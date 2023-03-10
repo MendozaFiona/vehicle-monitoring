@@ -2,4 +2,4 @@
 npm-debug.log
 .DS_Store
 .env.production
-.env.decelopment
+.env.development
