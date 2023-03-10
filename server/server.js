@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false })); // middleware to read url enco
 
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/vehicles", require("./routes/vehicleRoutes"));
+app.use("/api/types", require("./routes/typeRoutes"));
 
 app.use(errorHandler); // middleware for configured express errorhandling
 
