@@ -22,8 +22,6 @@ const getVehicles = asyncHandler(async (req, res) => {
     });
   }
 
-  console.log(vehicles)
-
   res.status(200).json(filteredVehicles);
 });
 
