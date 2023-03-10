@@ -1,7 +1,33 @@
 import styled from "styled-components";
 
 export const StyledPageContent = styled.div`
-  margin: 60px 0;
+  margin: 60px 10%;
+`;
+
+export const StyledSideGrid = styled.div`
+  grid-template-columns: 45% auto;
+
+  .fm-content {
+    padding-top: 5%;
+  }
+`;
+
+export const StyledSideContent = styled.div`
+  background-color: #17252a;
+  width: 100%;
+  height: 100vh;
+
+  img {
+    width: 60%;
+    display: block;
+    margin: 10% auto;
+    border-radius: 20px;
+  }
+
+  .fm-side-heading {
+    text-align: center;
+    color: white
+  }
 `;
 
 export const StyledCard = styled.div`

@@ -1,27 +1,34 @@
 import React from "react";
-import {
-  StyledPageContent,
-  StyledButton,
-} from "../styled";
+import { StyledPageContent, StyledButton, StyledSideContent } from "../styled";
 import { StyledGrid, StyledNavigation } from "./styled";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 const Vehicle = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
   return (
-    <StyledPageContent>
-      <StyledGrid className="grid">
+    <StyledGrid className="grid">
+      <StyledSideContent>
         <StyledNavigation>
-          <StyledButton onClick={() => navigate("list")}>
+          <StyledButton
+            className={`${pathname.includes("/add") ? "" : "active"}`}
+            onClick={() => navigate("list")}
+          >
             Vehicle List
           </StyledButton>
-          <StyledButton onClick={() => navigate("add")}>
+          <StyledButton
+            className={`fm-no-top ${pathname.includes("/add") ? "active" : ""}`}
+            onClick={() => navigate("add")}
+          >
             Add Vehicle
           </StyledButton>
         </StyledNavigation>
+      </StyledSideContent>
+      <StyledPageContent>
         <Outlet />
-      </StyledGrid>
-    </StyledPageContent>
+      </StyledPageContent>
+    </StyledGrid>
   );
 };
 

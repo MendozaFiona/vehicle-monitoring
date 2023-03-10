@@ -29,7 +29,7 @@ const Header = () => {
           <ul>
             <li>
               <a
-                className={`${pathname.includes("/vehicle") ? "active" : null}`}
+                className={`${pathname.includes("/vehicle") ? "active" : ""}`}
                 href="/vehicle"
               >
                 Vehicle
@@ -37,7 +37,7 @@ const Header = () => {
             </li>
             <li>
               <a
-                className={`${pathname === "/dispatch" ? "active" : null}`}
+                className={`${pathname === "/dispatch" ? "active" : ""}`}
                 href="/dispatch"
               >
                 Dispatch
@@ -46,7 +46,7 @@ const Header = () => {
             <li>
               <details role="list" dir="rtl">
                 <summary
-                  className={`${pathname === "/settings" ? "active" : null}`}
+                  className={`${pathname === "/settings" ? "active" : ""}`}
                   aria-haspopup="listbox"
                   role="link"
                 >

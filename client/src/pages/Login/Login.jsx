@@ -5,10 +5,13 @@ import { login, reset } from "../../reducer/user/userSlice";
 import { toast } from "react-toastify";
 import {
   StyledPageContent,
+  StyledSideContent,
   StyledCard,
   StyledForm,
+  StyledCardHeading,
   StyledCardContent,
 } from "../../components/styled";
+import { StyledSideGrid } from "../../components/styled";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -59,42 +62,48 @@ const Login = () => {
   }
 
   return (
-    <StyledPageContent>
-      <StyledCard>
-        <StyledCardContent>
-          <StyledForm>
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="email">
-                Email
-                <input
-                  type="text"
-                  name="email"
-                  value={email}
-                  placeholder="Email"
-                  autoComplete="on"
-                  required
-                  onChange={handleChange}
-                />
-              </label>
-              <label htmlFor="password">
-                Password
-                <input
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="Password"
-                  autoComplete="off"
-                  required
-                  onChange={handleChange}
-                />
-              </label>
+    <StyledSideGrid className="grid">
+      <StyledSideContent>
+        <img src="/assets/images/login-image.png" alt="login" />
+      </StyledSideContent>
+      <StyledPageContent className="fm-content">
+        <StyledCard>
+          <StyledCardHeading>LOG IN</StyledCardHeading>
+          <StyledCardContent>
+            <StyledForm>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="email">
+                  Email
+                  <input
+                    type="text"
+                    name="email"
+                    value={email}
+                    placeholder="Email"
+                    autoComplete="on"
+                    required
+                    onChange={handleChange}
+                  />
+                </label>
+                <label htmlFor="password">
+                  Password
+                  <input
+                    type="password"
+                    name="password"
+                    value={password}
+                    placeholder="Password"
+                    autoComplete="off"
+                    required
+                    onChange={handleChange}
+                  />
+                </label>
 
-              <button type="submit">Login</button>
-            </form>
-          </StyledForm>
-        </StyledCardContent>
-      </StyledCard>
-    </StyledPageContent>
+                <button type="submit">Login</button>
+              </form>
+            </StyledForm>
+          </StyledCardContent>
+        </StyledCard>
+      </StyledPageContent>
+    </StyledSideGrid>
   );
 };
 

@@ -1,7 +1,6 @@
 import React from "react";
 
 const VehicleTable = ({ vehicle }) => {
-  console.log(vehicle);
   return (
     <div className="fm-table-data">
       <table>

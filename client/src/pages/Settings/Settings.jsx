@@ -6,6 +6,8 @@ import {
   StyledCardHeading,
   StyledCardContent,
   StyledForm,
+  StyledSideGrid,
+  StyledSideContent,
 } from "../../components/styled";
 import { StyledInput } from "./styled";
 import { updateUser } from "../../reducer/user/userSlice";
@@ -24,7 +26,6 @@ const Settings = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await dispatch(updateUser({ password: passChange }));
-    console.log(res);
     if (!res.error) {
       toast.success("Successfully Changed");
       handleChangePass();
@@ -34,41 +35,46 @@ const Settings = () => {
   };
 
   return (
-    <StyledPageContent>
-      <StyledCard>
-        <StyledCardHeading>SETTINGS</StyledCardHeading>
-        <StyledCardContent>
-          {passChangeDisabled && (
-            <button onClick={handleChangePass}>Change Password</button>
-          )}
-          {!passChangeDisabled && (
-            <StyledForm>
-              <form onSubmit={handleSubmit}>
-                <StyledInput>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Change Password"
-                    autoComplete="off"
-                    value={passChange}
-                    onChange={(e) => {
-                      setPassChange(e.target.value);
-                    }}
-                    disabled={passChangeDisabled}
-                    required
-                  />
-                  <div className="grid">
-                    <button onClick={handleChangePass}>cancel</button>
-                    <button type="submit">submit</button>
-                  </div>
-                </StyledInput>
-              </form>
-            </StyledForm>
-          )}
-        </StyledCardContent>
-      </StyledCard>
-    </StyledPageContent>
+    <StyledSideGrid className="grid">
+      <StyledSideContent>
+        <img src="/assets/images/settings-image.png" alt="settings" />
+      </StyledSideContent>
+      <StyledPageContent>
+        <StyledCard>
+          <StyledCardHeading>SETTINGS</StyledCardHeading>
+          <StyledCardContent>
+            {passChangeDisabled && (
+              <button onClick={handleChangePass}>Change Password</button>
+            )}
+            {!passChangeDisabled && (
+              <StyledForm>
+                <form onSubmit={handleSubmit}>
+                  <StyledInput>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      placeholder="Change Password"
+                      autoComplete="off"
+                      value={passChange}
+                      onChange={(e) => {
+                        setPassChange(e.target.value);
+                      }}
+                      disabled={passChangeDisabled}
+                      required
+                    />
+                    <div className="grid">
+                      <button onClick={handleChangePass}>cancel</button>
+                      <button type="submit">submit</button>
+                    </div>
+                  </StyledInput>
+                </form>
+              </StyledForm>
+            )}
+          </StyledCardContent>
+        </StyledCard>
+      </StyledPageContent>
+    </StyledSideGrid>
   );
 };
 

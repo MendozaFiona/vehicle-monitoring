@@ -18,7 +18,7 @@ function App() {
       <GlobalStyle />
       <Router>
         <Header />
-        <div className="container">
+        
           <Routes>
             <Route path="/" element={<Login />} />
             <Route
@@ -50,7 +50,7 @@ function App() {
               }
             />
           </Routes>
-        </div>
+        
       </Router>
       <ToastContainer theme="dark" />
     </>

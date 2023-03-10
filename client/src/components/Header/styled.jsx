@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.div`
   background-color: #17252a;
-  border-bottom: 1px solid #2b7a78;
+  border-bottom: 1px solid #17252a;
+  width: 100%;
 `;
 
 export const StyledNav = styled.nav`
