@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "dotenv -e .env.development nodemon server.js",
-    "server": "dotenv -e .env.production nodemon server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build -- prefix client"
+    "server": "dotenv -e .env.production nodemon server.js"
   },
   "keywords": [],
   "author": "",
