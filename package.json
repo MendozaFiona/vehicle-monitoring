@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "dotenv -e .env.development nodemon server.js",
-    "server": "dotenv -e .env.production nodemon server.js"
+    "start": "node server/server.js",
+    "dev": "dotenv -e .env.development nodemon server/server.js",
+    "server": "dotenv -e .env.production nodemon server/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build -- prefix client"
   },
   "keywords": [],
   "author": "",
