@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
@@ -9,7 +10,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true, methods: "GET, PUT, POST, DELETE" }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: "GET, PUT, POST, DELETE",
+  })
+);
 
 app.use(express.json()); // middleware to read json body
 app.use(express.urlencoded({ extended: false })); // middleware to read url encoded body
@@ -17,6 +24,17 @@ app.use(express.urlencoded({ extended: false })); // middleware to read url enco
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/vehicles", require("./routes/vehicleRoutes"));
 app.use("/api/types", require("./routes/typeRoutes"));
+
+// Serve frontend
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+  
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "client", "build", "index.html")
+    )
+  );
+}
 
 app.use(errorHandler); // middleware for configured express errorhandling
 

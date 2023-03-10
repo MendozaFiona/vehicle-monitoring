@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "dev": "dotenv -e .env.development nodemon server.js",
+    "server": "dotenv -e .env.production nodemon server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ../client && yarn run build -- prefix ../client"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +24,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.21"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
