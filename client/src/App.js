@@ -18,39 +18,19 @@ function App() {
       <GlobalStyle />
       <Router>
         <Header />
-        
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route
-              path="/vehicle/*"
-              element={
-                <RequireAuth>
-                  <Vehicle />
-                </RequireAuth>
-              }
-            >
+
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route element={<RequireAuth />}>
+            <Route path="/vehicle" element={<Vehicle />}>
               <Route index element={<VehicleList />} />
               <Route path="list" element={<VehicleList />} />
               <Route path="add" element={<VehicleAdd />} />
             </Route>
-            <Route
-              path="/dispatch"
-              element={
-                <RequireAuth>
-                  <Dispatch />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <RequireAuth>
-                  <Settings />
-                </RequireAuth>
-              }
-            />
-          </Routes>
-        
+            <Route path="/dispatch" element={<Dispatch />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
+        </Routes>
       </Router>
       <ToastContainer theme="dark" />
     </>

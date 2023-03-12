@@ -6,9 +6,7 @@ export const StyledNavigation = styled.div`
 
   button {
     border-radius: 0;
-    border: 10px solid #3aafa9;
-    border-right: 0;
-    border-left: 0;
+    border: 0;
     margin: 0;
     padding: 20px;
   }
@@ -18,7 +16,9 @@ export const StyledNavigation = styled.div`
   }
 
   .active {
-    border-right: 20px solid #3aafa9;
+    background-color: #3aafa9;
+    color: black;
+    font-weight: bold;
   }
 `;
 
