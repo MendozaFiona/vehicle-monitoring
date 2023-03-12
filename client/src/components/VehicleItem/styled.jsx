@@ -11,14 +11,29 @@ export const StyledAccordion = styled.details`
   }
 
   .fm-table-data {
-    padding-top: 20px;
+    background-color: #17252a;
+    padding: 10px 0;
     overflow-y: auto;
+    border-radius: 20px;
+    margin: 40px 25px 0 25px;
+
+    table {
+      margin: 0;
+    }
   }
 
   td,
   th {
     text-align: center;
-    font-size: 19px;
+    font-size: 20px;
+  }
+
+  th {
+    border-color: #2b7a78;
+  }
+
+  td {
+    border-width: 0;
   }
 
   summary {
@@ -27,7 +42,7 @@ export const StyledAccordion = styled.details`
 
     .grid {
       position: absolute;
-      top: -10px;
+      top: 0;
       right: 80px;
       grid-template-columns: 130px 130px;
 
@@ -43,4 +58,12 @@ export const StyledAccordion = styled.details`
     background-color: white;
     border-radius: 5px;
   }
+`;
+
+export const StyledTitle = styled.div`
+  background-color: #17252a;
+  max-width: 200px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 20px;
 `;

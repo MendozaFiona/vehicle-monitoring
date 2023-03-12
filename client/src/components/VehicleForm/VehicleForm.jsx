@@ -8,6 +8,7 @@ const VehicleForm = ({
   formData,
   setFormData,
   buttonLabel = "Submit",
+  required = true,
 }) => {
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -26,7 +27,7 @@ const VehicleForm = ({
             name="platenum"
             value={formData.platenum}
             placeholder="Plate #"
-            required
+            required={required}
             onChange={handleChange}
           />
         </label>
@@ -39,7 +40,7 @@ const VehicleForm = ({
             name="brand"
             value={formData.brand}
             placeholder="Brand"
-            required
+            required={required}
             onChange={handleChange}
           />
         </label>
@@ -54,7 +55,7 @@ const VehicleForm = ({
             name="model"
             value={formData.model}
             placeholder="Model"
-            required
+            required={required}
             onChange={handleChange}
           />
         </label>
@@ -70,7 +71,7 @@ const VehicleForm = ({
             name="year"
             value={formData.year}
             placeholder="Year"
-            required
+            required={required}
             onChange={handleChange}
           />
         </label>
@@ -83,7 +84,7 @@ const VehicleForm = ({
             value={formData.vehicle_type}
             id="vehicle_type"
             name="vehicle_type"
-            required
+            required={required}
             onChange={handleChange}
           >
             <TypesVehicle />
@@ -98,7 +99,7 @@ const VehicleForm = ({
             name="vehicle_capacity"
             value={formData.vehicle_capacity}
             placeholder="Vehicle Capacity (kg)"
-            required
+            required={required}
             onChange={handleChange}
           />
         </label>
@@ -111,7 +112,7 @@ const VehicleForm = ({
             value={formData.fuel_type}
             id="fuel_type"
             name="fuel_type"
-            required
+            required={required}
             onChange={handleChange}
           >
             <TypesFuel />
@@ -127,7 +128,7 @@ const VehicleForm = ({
             name="fuel_tank"
             value={formData.fuel_tank}
             placeholder="Fuel Tank (L)"
-            required
+            required={required}
             onChange={handleChange}
           />
         </label>

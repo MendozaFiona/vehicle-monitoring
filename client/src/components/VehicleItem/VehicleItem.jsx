@@ -8,7 +8,7 @@ import {
 } from "../../reducer/vehicle/vehicleSlice";
 import VehicleEdit from "../../components/VehicleEdit";
 import VehicleTable from "../../components/VehicleTable";
-import { StyledAccordion } from "./styled";
+import { StyledAccordion, StyledTitle } from "./styled";
 import Popup from "../../components/Popup";
 
 const VehicleItem = () => {
@@ -79,7 +79,7 @@ const VehicleItem = () => {
         ? vehicles.map((vehicle) => (
             <StyledAccordion key={vehicle._id}>
               <summary>
-                {vehicle.platenum}
+                <StyledTitle> {vehicle.platenum}</StyledTitle>
                 <div className="grid">
                   <button
                     onClick={() => {

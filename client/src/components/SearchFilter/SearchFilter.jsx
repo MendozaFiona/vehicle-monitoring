@@ -29,6 +29,7 @@ const SearchFilter = () => {
         formData={formData}
         setFormData={setFormData}
         buttonLabel="Go"
+        required={false}
       />
     </StyledSearchFilter>
   );
