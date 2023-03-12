@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "local": "dotenv -e .env.development nodemon server/server.js",
     "prod": "dotenv -e .env.production nodemon server/server.js",
     "client": "yarn --cwd client/ start",
