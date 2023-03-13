@@ -37,7 +37,7 @@ const Header = () => {
             </li>
             <li>
               <a
-                className={`${pathname === "/dispatch" ? "active" : ""}`}
+                className={`${pathname.includes("/dispatch") ? "active" : ""}`}
                 href="/dispatch"
               >
                 Dispatch

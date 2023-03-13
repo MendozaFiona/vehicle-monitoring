@@ -3,7 +3,7 @@ import { StyledPageContent, StyledButton, StyledSideContent } from "../styled";
 import { StyledGrid, StyledNavigation } from "./styled";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
-const VehicleNavigation = () => {
+const Dispatch = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
@@ -12,16 +12,18 @@ const VehicleNavigation = () => {
       <StyledSideContent>
         <StyledNavigation>
           <StyledButton
-            className={`${pathname.includes("/add") ? "" : "active"}`}
-            onClick={() => navigate("list")}
-          >
-            Vehicle List
-          </StyledButton>
-          <StyledButton
-            className={`fm-no-top ${pathname.includes("/add") ? "active" : ""}`}
+            className={`${pathname.includes("/list") ? "" : "active"}`}
             onClick={() => navigate("add")}
           >
-            Add Vehicle
+            Add Dispatch
+          </StyledButton>
+          <StyledButton
+            className={`fm-no-top ${
+              pathname.includes("/list") ? "active" : ""
+            }`}
+            onClick={() => navigate("list")}
+          >
+            Dispatch List
           </StyledButton>
         </StyledNavigation>
       </StyledSideContent>
@@ -32,4 +34,4 @@ const VehicleNavigation = () => {
   );
 };
 
-export default VehicleNavigation;
+export default Dispatch;
