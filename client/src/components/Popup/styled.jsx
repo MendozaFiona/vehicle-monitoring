@@ -49,6 +49,11 @@ export const StyledPopup = styled.div`
     }
   }
 
+  .list {
+    width: 60%;
+    margin: 70px auto;
+  }
+
   .confirm {
     width: 30%;
     margin: 300px auto;

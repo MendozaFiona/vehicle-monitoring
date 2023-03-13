@@ -8,3 +8,9 @@ export const initialVehicleData = {
   fuel_type: "",
   fuel_tank: "",
 };
+
+export const initialDispatchData = {
+  id: "",
+  platenum: "",
+  load_capacity: "",
+};

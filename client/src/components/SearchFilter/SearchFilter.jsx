@@ -22,7 +22,7 @@ const SearchFilter = () => {
   };
 
   return (
-    <StyledSearchFilter>
+    <StyledSearchFilter className="fm-search-filter">
       <VehicleForm
         isLoading={isLoading}
         handleSubmit={handleSubmit}

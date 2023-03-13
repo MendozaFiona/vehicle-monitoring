@@ -134,19 +134,6 @@ const VehicleForm = ({
         </label>
       </div>
 
-      {/* <fieldset>
-          <label htmlFor="status">
-            Status
-            <input
-              className="fm-checkbox"
-              type="checkbox"
-              id="status"
-              name="status"
-              role="switch"
-            />
-          </label>
-        </fieldset> */}
-
       <button type="submit" disabled={isLoading}>
         {buttonLabel}
       </button>

@@ -26,7 +26,7 @@ export const StyledSideContent = styled.div`
 
   .fm-side-heading {
     text-align: center;
-    color: white
+    color: white;
   }
 `;
 
@@ -97,4 +97,30 @@ export const StyledForm = styled.div`
       border-color: #2b7a78;
     }
   }
+`;
+
+export const StyledNavigation = styled.div`
+  padding: 0;
+  margin-top: 0;
+
+  button {
+    border-radius: 0;
+    border: 0;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .fm-no-top {
+    border-top: 0;
+  }
+
+  .active {
+    background-color: #3aafa9;
+    color: black;
+    font-weight: bold;
+  }
+`;
+
+export const StyledGrid = styled.div`
+  grid-template-columns: 30% auto;
 `;

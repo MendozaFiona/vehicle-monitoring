@@ -1,6 +1,11 @@
 import React from "react";
-import { StyledPageContent, StyledButton, StyledSideContent } from "../styled";
-import { StyledGrid, StyledNavigation } from "./styled";
+import {
+  StyledPageContent,
+  StyledButton,
+  StyledSideContent,
+  StyledGrid,
+  StyledNavigation,
+} from "../styled";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 const VehicleNavigation = () => {
