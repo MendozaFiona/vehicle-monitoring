@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledAccordion = styled.details`
   border-bottom: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #2b7a78;
   padding: 30px 0;
 
@@ -14,7 +14,7 @@ export const StyledAccordion = styled.details`
     background-color: #17252a;
     padding: 10px 0;
     overflow-y: auto;
-    border-radius: 20px;
+    border-radius: 10px;
     margin: 40px 25px 0 25px;
 
     table {
@@ -65,5 +65,5 @@ export const StyledTitle = styled.div`
   max-width: 200px;
   text-align: center;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
 `;

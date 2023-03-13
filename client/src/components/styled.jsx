@@ -32,7 +32,7 @@ export const StyledSideContent = styled.div`
 
 export const StyledCard = styled.div`
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 1px solid #2b7a78;
   min-width: 700px;
   width: 100%;
@@ -41,8 +41,8 @@ export const StyledCard = styled.div`
 
 export const StyledCardHeading = styled.h3`
   text-align: center;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
   background-color: #17252a;
   padding: 20px 0;
   margin: 0;
@@ -53,14 +53,14 @@ export const StyledCardContent = styled.div`
   padding: 30px 40px 5px 40px;
   button {
     background-color: #17252a;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid #17252a;
   }
 `;
 
 export const StyledButton = styled.button`
   background-color: #17252a;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 1px solid #17252a;
 `;
 
@@ -84,7 +84,7 @@ export const StyledForm = styled.div`
     select {
       max-height: 40px;
       min-height: 40px;
-      border-radius: 20px;
+      border-radius: 10px;
       background-color: #def2f1;
       font-size: 16px;
       padding: 0 15px;

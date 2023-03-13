@@ -16,7 +16,7 @@ export const StyledPopup = styled.div`
   .popup {
     padding: 30px;
     background: #fff;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 10px solid #17252a;
     position: relative;
     text-align: center;

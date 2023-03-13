@@ -18,14 +18,14 @@ export const StyledSearchFilter = styled.div`
       max-height: 35px;
       min-height: 35px;
       font-size: 15px;
-      border-radius: 20px;
+      border-radius: 10px;
       background-color: #def2f1;
     }
   }
 
   button {
     background-color: #def2f1;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 0;
     margin-top: 20px;
     padding: 5px;

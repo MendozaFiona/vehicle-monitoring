@@ -7,7 +7,7 @@ export const StyledSearch = styled.div`
   input {
     background-color: #2b7a78;
     border: 5px solid #17252a;
-    border-radius: 0 20px 0 0;
+    border-radius: 0 10px 0 0;
     color: white;
 
     ::placeholder {
@@ -27,7 +27,7 @@ export const StyledSearch = styled.div`
 export const StyledSearchButton = styled.button`
   background-color: #17252a;
   border: 0;
-  border-radius: 20px 0 0 20px;
+  border-radius: 10px 0 0 20px;
   width: 100%;
 `;
 
@@ -35,7 +35,7 @@ export const StyledSearchGroup = styled.div`
   details {
     border: 0;
     background-color: #17252a;
-    border-radius: 20px;
+    border-radius: 10px;
     position: relative;
     summary > .fm-filters {
       color: white;
