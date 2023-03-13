@@ -16,13 +16,14 @@ export const StyledPopup = styled.div`
   .popup {
     padding: 30px;
     background: #fff;
-    border-radius: 10px;
-    border: 10px solid #17252a;
+    border-radius: 15px;
+    border: 5px solid #17252a;
     position: relative;
     text-align: center;
 
     .content {
       padding: 20px;
+      color: black;
     }
 
     .icon {
@@ -30,6 +31,7 @@ export const StyledPopup = styled.div`
       right: 23px;
       top: 20px;
       cursor: pointer;
+      color: #17252a;
     }
   }
 
