@@ -15,8 +15,15 @@ export const initialDispatchData = {
   load_capacity: "",
   from_location: "",
   to_location: "",
-  date: "",
-  time: "",
+  date_departure: "",
+  time_departure: "",
   driver: "",
   palero: "",
+};
+
+export const initialCompleteDispatchData = {
+  id: "",
+  fuel_used: "",
+  date_arrival: "",
+  time_arrival: "",
 };

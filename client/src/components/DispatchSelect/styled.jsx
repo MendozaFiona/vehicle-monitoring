@@ -17,28 +17,3 @@ export const StyledFilter = styled.div`
     }
   }
 `;
-
-export const StyledTable = styled.div`
-  overflow-y: auto;
-
-  table {
-    margin-top: 10px;
-    th,
-    td {
-      border-color: #17252a;
-      color: black;
-    }
-
-    .no-border {
-      border: 0;
-    }
-
-    button {
-      height: 20px;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-`;

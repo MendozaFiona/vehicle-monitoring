@@ -9,17 +9,26 @@ import DispatchForm from "../../components/DispatchForm";
 import Popup from "../../components/Popup";
 import DispatchFilter from "../../components/DispatchSelect";
 import { initialDispatchData } from "../../utils/data";
+import { useDispatch, useSelector } from "react-redux";
+import { addDispatch } from "../../reducer/dispatch/dispatchSlice";
+import { toast } from "react-toastify";
 
 const DispatchAdd = () => {
   const [formData, setFormData] = useState(initialDispatchData);
   const [showPopup, setShowPopup] = useState(false);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // dispatch(addDispatch)
-  };
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.dispatch);
 
-  const testFunc = () => {
-    console.log("test");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await dispatch(addDispatch(formData));
+
+    if (!res.error) {
+      toast.success("Successfully Added Dispatch");
+      setFormData(initialDispatchData);
+    } else {
+      toast.error(res.payload);
+    }
   };
 
   return (
@@ -35,16 +44,16 @@ const DispatchAdd = () => {
               />
             }
             type="list"
-            func={testFunc}
             setShow={setShowPopup}
           />
         )}
         <StyledForm>
           <DispatchForm
+            isLoading={isLoading}
             handleSubmit={handleSubmit}
             formData={formData}
             setFormData={setFormData}
-            func={setShowPopup}
+            setShow={setShowPopup}
           />
         </StyledForm>
       </StyledCardContent>

@@ -10,6 +10,7 @@ import VehicleEdit from "../../components/VehicleEdit";
 import VehicleTable from "../../components/VehicleTable";
 import { StyledAccordion, StyledTitle } from "./styled";
 import Popup from "../../components/Popup";
+import Spinner from "../Spinner";
 
 const VehicleItem = () => {
   const dispatch = useDispatch();
@@ -33,8 +34,7 @@ const VehicleItem = () => {
   }, [isError, message, dispatch]);
 
   if (isLoading) {
-    // fgx modify
-    return <div aria-busy="true"></div>;
+    return <Spinner />;
   }
 
   const handlePopup = ({ data, method }) => {

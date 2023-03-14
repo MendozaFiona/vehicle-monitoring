@@ -31,14 +31,14 @@ const getDispatches = async (params, token) => {
 
 // update dispatch
 const updateDispatch = async (dispatchData, token) => {
-  const { _id } = dispatchData;
+  const { id } = dispatchData;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const response = await axios.put(API_URL + _id, dispatchData, config);
+  const response = await axios.put(API_URL + id, dispatchData, config);
 
   return response.data;
 };

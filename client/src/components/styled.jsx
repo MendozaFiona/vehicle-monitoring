@@ -124,3 +124,32 @@ export const StyledNavigation = styled.div`
 export const StyledGrid = styled.div`
   grid-template-columns: 30% auto;
 `;
+
+export const StyledTable = styled.div`
+  overflow-y: auto;
+
+  table {
+    margin-top: 10px;
+    th,
+    td {
+      border-color: #17252a;
+      color: black;
+    }
+
+    th {
+      font-size: 18px;
+    }
+
+    .no-border {
+      border: 0;
+    }
+
+    button {
+      height: 20px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+`;

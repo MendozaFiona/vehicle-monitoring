@@ -6,7 +6,7 @@ const DispatchForm = ({
   handleSubmit,
   formData,
   setFormData,
-  func,
+  setShow,
 }) => {
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -34,20 +34,20 @@ const DispatchForm = ({
           <StyledButton
             type="button"
             onClick={() => {
-              func(true);
+              setShow(true);
             }}
           >
             select
           </StyledButton>
         </StyledInput>
         <label htmlFor="load_capacity">
-          Load Capacity
+          Load Capacity (kg)
           <input
             type="text"
             id="load_capacity"
             name="load_capacity"
             value={formData.load_capacity}
-            placeholder="Load Capacity"
+            placeholder="Load Capacity (kg)"
             required
             onChange={handleChange}
           />
@@ -82,26 +82,26 @@ const DispatchForm = ({
       </div>
 
       <div className="grid">
-        <label htmlFor="date">
-          Date
+        <label htmlFor="date_departure">
+          Date of Departure
           <input
             type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            placeholder="Date"
+            id="date_departure"
+            name="date_departure"
+            value={formData.date_departure}
+            placeholder="Date of Departure"
             required
             onChange={handleChange}
           />
         </label>
-        <label htmlFor="time">
-          Time
+        <label htmlFor="time_departure">
+          Time of Departure
           <input
             type="time"
-            id="time"
-            name="time"
-            value={formData.time}
-            placeholder="Time"
+            id="time_departure"
+            name="time_departure"
+            value={formData.time_departure}
+            placeholder="Time of Departure"
             required
             onChange={handleChange}
           />

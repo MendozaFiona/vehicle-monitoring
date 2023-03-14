@@ -47,10 +47,10 @@ const dispatchSchema = mongoose.Schema(
     fuel_used: {
       type: Number,
     },
-    date_arrived: {
+    date_arrival: {
       type: Date,
     },
-    time_arrived: {
+    time_arrival: {
       type: String,
     },
     status: {

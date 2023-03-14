@@ -7,13 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVehicles } from "../../reducer/vehicle/vehicleSlice";
 import queryString from "query-string";
 
-const SearchFilter = () => {
+const SearchFilter = ({ isDispatch = false }) => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.vehicles);
   const [formData, setFormData] = useState(initialVehicleData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isDispatch) {
+      formData["status"] = "free";
+    }
     const newData = Object.fromEntries(
       Object.entries(formData).filter(([key, value]) => value !== "")
     );

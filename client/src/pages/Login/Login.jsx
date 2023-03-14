@@ -12,6 +12,7 @@ import {
   StyledCardContent,
 } from "../../components/styled";
 import { StyledSideGrid } from "../../components/styled";
+import Spinner from "../../components/Spinner";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -57,8 +58,7 @@ const Login = () => {
   };
 
   if (isLoading) {
-    // fgx modify
-    return <div aria-busy="true"></div>;
+    return <Spinner />;
   }
 
   return (
