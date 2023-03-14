@@ -71,7 +71,14 @@ const addDispatch = asyncHandler(async (req, res) => {
     time_departure,
     driver,
     palero,
+    status: "ongoing",
   });
+
+  await Vehicle.findByIdAndUpdate(
+    vehicle._id,
+    { status: "used" },
+    { new: true }
+  );
 
   res.status(200).json(dispatch);
 });
@@ -80,6 +87,13 @@ const addDispatch = asyncHandler(async (req, res) => {
 // @route PUT /api/dispatch/:id
 // @access Private
 const updateDispatch = asyncHandler(async (req, res) => {
+  const { fuel_used, date_arrived, time_arrived } = req.body;
+
+  if (!fuel_used || !date_arrived || !time_arrived) {
+    res.status(400);
+    throw new Error("Please add additional fields");
+  }
+
   const dispatch = await Dispatch.findById(req.params.id);
 
   if (!dispatch) {
@@ -101,7 +115,13 @@ const updateDispatch = asyncHandler(async (req, res) => {
 
   const updatedDispatch = await Dispatch.findByIdAndUpdate(
     req.params.id,
-    req.body,
+    { ...req.body, status: "completed" },
+    { new: true }
+  );
+
+  await Vehicle.findByIdAndUpdate(
+    dispatch.vehicle.id,
+    { status: "free" },
     { new: true }
   );
 

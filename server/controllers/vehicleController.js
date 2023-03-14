@@ -62,6 +62,7 @@ const addVehicle = asyncHandler(async (req, res) => {
     user: req.user.id,
     vehicle_type_name: vehicle_type_name.name,
     fuel_type_name: fuel_type_name.name,
+    status: "free",
   });
 
   res.status(200).json(vehicle);
