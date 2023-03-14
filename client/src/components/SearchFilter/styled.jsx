@@ -13,7 +13,7 @@ export const StyledSearchFilter = styled.div`
     select {
       padding: 0 15px;
       margin: 0 10px 0 10px;
-      max-width: 150px;
+      max-width: 190px;
       min-width: 30px;
       max-height: 35px;
       min-height: 35px;
@@ -33,8 +33,17 @@ export const StyledSearchFilter = styled.div`
     max-width: 80px;
     min-width: 80px;
     position: absolute;
-    bottom: 5px;
-    right: 50px;
     font-weight: bold;
   }
+
+  button:not(.fm-reset) {
+    bottom: 5px;
+    right: 50px;
+  }
+
+  .fm-reset {
+    bottom: 5px;
+    left: 60px;
+  }
+
 `;

@@ -5,15 +5,23 @@ export const StyledFilter = styled.div`
   background-color: #17252a;
   text-align: left;
   border-radius: 10px;
+  padding-bottom: 15px;
 
   .fm-search-filter {
     padding: 20px;
 
     button {
       position: absolute;
-      top: 240px;
+      top: 260px;
       height: 40px;
+    }
+
+    button:not(.fm-reset) {
       right: 80px;
+    }
+
+    .fm-reset {
+      left: 80px;
     }
   }
 `;

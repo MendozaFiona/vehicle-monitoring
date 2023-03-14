@@ -19,7 +19,8 @@ const DispatchCompleteForm = ({
         <label htmlFor="fuel_used">
           Fuel Used (L)
           <input
-            type="text"
+            type="number"
+            min={0.1}
             id="fuel_used"
             name="fuel_used"
             value={formData.fuel_used}

@@ -84,7 +84,9 @@ const DispatchItems = ({ setShow, formData, setFormData }) => {
                   {dispatch.fuel_used ? dispatch.fuel_used + " L" : "N/A"}
                 </td>
                 <td>
-                  {new Date(dispatch.date_arrival).toDateString() || "N/A"}
+                  {dispatch.date_arrival
+                    ? new Date(dispatch.date_arrival).toDateString()
+                    : "N/A"}
                 </td>
                 <td>
                   {dispatch.time_arrival

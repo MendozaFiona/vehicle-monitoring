@@ -43,9 +43,10 @@ const DispatchForm = ({
         <label htmlFor="load_capacity">
           Load Capacity (kg)
           <input
-            type="text"
+            type="number"
             id="load_capacity"
             name="load_capacity"
+            min={0.1}
             value={formData.load_capacity}
             placeholder="Load Capacity (kg)"
             required

@@ -25,7 +25,7 @@ const VehicleList = () => {
   };
 
   return (
-    <div>
+    <>
       <StyledSearchGroup>
         <details
           onToggle={() => {
@@ -62,7 +62,7 @@ const VehicleList = () => {
           <VehicleItem />
         </StyledCardContent>
       </StyledCard>
-    </div>
+    </>
   );
 };
 

@@ -24,6 +24,13 @@ const SearchFilter = ({ isDispatch = false }) => {
     dispatch(getVehicles(params));
   };
 
+  const handleReset = () => {
+    if (formData !== initialVehicleData) {
+      dispatch(getVehicles());
+      setFormData(initialVehicleData);
+    }
+  };
+
   return (
     <StyledSearchFilter className="fm-search-filter">
       <VehicleForm
@@ -34,6 +41,9 @@ const SearchFilter = ({ isDispatch = false }) => {
         buttonLabel="Go"
         required={false}
       />
+      <button className="fm-reset" onClick={handleReset}>
+        Reset
+      </button>
     </StyledSearchFilter>
   );
 };

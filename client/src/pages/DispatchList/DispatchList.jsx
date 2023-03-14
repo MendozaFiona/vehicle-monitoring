@@ -14,6 +14,7 @@ import {
   updateDispatch,
   getDispatches,
 } from "../../reducer/dispatch/dispatchSlice";
+import DispatchSearch from "../../components/DispatchSearch";
 
 const DispatchList = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -33,29 +34,32 @@ const DispatchList = () => {
   };
 
   return (
-    <StyledCard>
-      <StyledCardHeading>Dispatch List</StyledCardHeading>
-      <StyledCardContent>
-        {showPopup && (
-          <Popup
-            content={
-              <DispatchCompleteForm
-                handleSubmit={handleSubmit}
-                formData={formData}
-                setFormData={setFormData}
-              />
-            }
-            type="form"
+    <>
+      <DispatchSearch />
+      <StyledCard>
+        <StyledCardHeading>Dispatch List</StyledCardHeading>
+        <StyledCardContent>
+          {showPopup && (
+            <Popup
+              content={
+                <DispatchCompleteForm
+                  handleSubmit={handleSubmit}
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              }
+              type="form"
+              setShow={setShowPopup}
+            />
+          )}
+          <DispatchItems
             setShow={setShowPopup}
+            formData={formData}
+            setFormData={setFormData}
           />
-        )}
-        <DispatchItems
-          setShow={setShowPopup}
-          formData={formData}
-          setFormData={setFormData}
-        />
-      </StyledCardContent>
-    </StyledCard>
+        </StyledCardContent>
+      </StyledCard>
+    </>
   );
 };
 

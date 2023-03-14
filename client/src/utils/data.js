@@ -27,3 +27,10 @@ export const initialCompleteDispatchData = {
   date_arrival: "",
   time_arrival: "",
 };
+
+export const initialDispatchFilterData = {
+  date_departure_from: "",
+  time_departure_from: "",
+  date_departure_to: "",
+  time_departure_to: "",
+};
