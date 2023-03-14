@@ -13,4 +13,10 @@ export const initialDispatchData = {
   id: "",
   platenum: "",
   load_capacity: "",
+  from_location: "",
+  to_location: "",
+  date: "",
+  time: "",
+  driver: "",
+  palero: "",
 };
