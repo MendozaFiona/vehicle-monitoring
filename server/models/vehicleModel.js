@@ -22,6 +22,8 @@ const vehicleSchema = mongoose.Schema(
     year: {
       type: Number,
       required: [true, "Please add vehicle year"],
+      min: [1900, "Invalid year"],
+      max: [2099, "Invalid year"],
     },
     vehicle_type: {
       type: String,
@@ -34,6 +36,7 @@ const vehicleSchema = mongoose.Schema(
     vehicle_capacity: {
       type: Number,
       required: [true, "Please add vehicle capacity"],
+      min: [0.1, "Invalid vehicle capacity"],
     },
     fuel_type: {
       type: String,
@@ -46,6 +49,7 @@ const vehicleSchema = mongoose.Schema(
     fuel_tank: {
       type: Number,
       required: [true, "Please add vehicle fuel tank"],
+      min: [0.1, "Invalid fuel tank"],
     },
     status: {
       type: String,

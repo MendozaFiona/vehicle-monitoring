@@ -26,10 +26,11 @@ const DispatchAdd = () => {
     if (!res.error) {
       toast.success("Successfully Added Dispatch");
       setFormData(initialDispatchData);
-      dispatch(reset());
     } else {
       toast.error(res.payload);
     }
+
+    dispatch(reset());
   };
 
   return (

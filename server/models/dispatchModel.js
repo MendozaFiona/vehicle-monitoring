@@ -19,6 +19,7 @@ const dispatchSchema = mongoose.Schema(
     load_capacity: {
       type: Number,
       required: [true, "Please add load capacity"],
+      min: [0.1, "Invalid load capacity"],
     },
     from_location: {
       type: String,
@@ -42,6 +43,7 @@ const dispatchSchema = mongoose.Schema(
     },
     fuel_used: {
       type: Number,
+      min: [0.1, "Invalid fuel used"],
     },
     datetime_arrival: {
       type: Date,

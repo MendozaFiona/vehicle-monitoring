@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addVehicle } from "../../reducer/vehicle/vehicleSlice";
+import { addVehicle, reset } from "../../reducer/vehicle/vehicleSlice";
 import { toast } from "react-toastify";
 import {
   StyledCard,
@@ -32,6 +32,8 @@ const VehicleAdd = () => {
     } else {
       toast.error(res.payload);
     }
+
+    dispatch(reset());
   };
 
   return (

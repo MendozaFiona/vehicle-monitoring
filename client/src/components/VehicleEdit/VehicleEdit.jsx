@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateVehicle, getVehicles } from "../../reducer/vehicle/vehicleSlice";
+import {
+  updateVehicle,
+  getVehicles,
+  reset,
+} from "../../reducer/vehicle/vehicleSlice";
 import { toast } from "react-toastify";
 import { StyledForm } from "../styled";
 import VehicleForm from "../VehicleForm";
@@ -8,9 +12,7 @@ import VehicleForm from "../VehicleForm";
 const VehicleEdit = ({ data, setShow }) => {
   const [formData, setFormData] = useState(data);
   const dispatch = useDispatch();
-  const { isError, isLoading, isSuccess, message } = useSelector(
-    (state) => state.vehicles
-  );
+  const { isLoading, message } = useSelector((state) => state.vehicles);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,13 +21,9 @@ const VehicleEdit = ({ data, setShow }) => {
       ...formData,
     };
 
-    await dispatch(updateVehicle(userData));
+    const res = await dispatch(updateVehicle(userData));
 
-    if (isError) {
-      toast.error(message);
-    }
-
-    if (isSuccess) {
+    if (!res.error) {
       setShow(false);
       toast.success("Successfully Updated Vehicle");
       dispatch(getVehicles());
