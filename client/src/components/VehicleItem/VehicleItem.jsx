@@ -11,6 +11,7 @@ import VehicleTable from "../../components/VehicleTable";
 import { StyledAccordion, StyledTitle } from "./styled";
 import Popup from "../../components/Popup";
 import Spinner from "../Spinner";
+import NoDataDisplay from "../NoDataDisplay";
 
 const VehicleItem = () => {
   const dispatch = useDispatch();
@@ -70,8 +71,6 @@ const VehicleItem = () => {
     setShowPopup(false);
   };
 
-  const noVehicles = <div>No Vehicles Found.</div>;
-
   return (
     <>
       {showPopup && popupContent}
@@ -105,7 +104,7 @@ const VehicleItem = () => {
               {/* <p>{vehicle.status}</p> not added yet */}
             </StyledAccordion>
           ))
-        : noVehicles}
+        : <NoDataDisplay />}
     </>
   );
 };

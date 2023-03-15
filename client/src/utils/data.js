@@ -34,3 +34,18 @@ export const initialDispatchFilterData = {
   date_departure_to: "",
   time_departure_to: "",
 };
+
+export const dispatchListFilter = [
+  {
+    id: "0",
+    name: "ALL",
+  },
+  {
+    id: "1",
+    name: "ONGOING",
+  },
+  {
+    id: "2",
+    name: "COMPLETED",
+  },
+];

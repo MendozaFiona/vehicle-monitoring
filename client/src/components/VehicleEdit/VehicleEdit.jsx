@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateVehicle,
   getVehicles,
-  reset,
 } from "../../reducer/vehicle/vehicleSlice";
 import { toast } from "react-toastify";
 import { StyledForm } from "../styled";
@@ -12,7 +11,7 @@ import VehicleForm from "../VehicleForm";
 const VehicleEdit = ({ data, setShow }) => {
   const [formData, setFormData] = useState(data);
   const dispatch = useDispatch();
-  const { isLoading, message } = useSelector((state) => state.vehicles);
+  const { isLoading } = useSelector((state) => state.vehicles);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

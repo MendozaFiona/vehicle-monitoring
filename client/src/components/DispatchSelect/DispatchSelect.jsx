@@ -5,6 +5,7 @@ import SearchFilter from "../SearchFilter";
 import { StyledFilter } from "./styled";
 import { StyledTable } from "../styled";
 import Spinner from "../Spinner";
+import NoDataDisplay from "../NoDataDisplay";
 
 const DispatchSelect = ({ setFormData, setShow }) => {
   const { vehicles, isLoading } = useSelector((state) => state.vehicles);
@@ -37,22 +38,22 @@ const DispatchSelect = ({ setFormData, setShow }) => {
         <Spinner />
       ) : (
         <StyledTable>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Plate #</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Model</th>
-                <th scope="col">Year</th>
-                <th scope="col">Vehicle Type</th>
-                <th scope="col">Capacity</th>
-                <th scope="col">Fuel Type</th>
-                <th scope="col">Fuel Tank</th>
-              </tr>
-            </thead>
-            <tbody>
-              {vehicles?.length > 0 &&
-                vehicles.map((vehicle) => (
+          {vehicles?.length > 0 ? (
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Plate #</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Year</th>
+                  <th scope="col">Vehicle Type</th>
+                  <th scope="col">Capacity</th>
+                  <th scope="col">Fuel Type</th>
+                  <th scope="col">Fuel Tank</th>
+                </tr>
+              </thead>
+              <tbody>
+                {vehicles.map((vehicle) => (
                   <tr key={vehicle._id}>
                     <td>{vehicle.platenum}</td>
                     <td>{vehicle.brand}</td>
@@ -73,8 +74,11 @@ const DispatchSelect = ({ setFormData, setShow }) => {
                     </td>
                   </tr>
                 ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          ) : (
+            <NoDataDisplay />
+          )}
         </StyledTable>
       )}
     </>

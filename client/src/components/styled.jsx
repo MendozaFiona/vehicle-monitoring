@@ -152,4 +152,16 @@ export const StyledTable = styled.div`
       align-items: center;
     }
   }
+
+  select {
+    max-width: 200px;
+    max-height: 40px;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #def2f1;
+  }
 `;
