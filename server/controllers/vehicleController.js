@@ -12,7 +12,7 @@ const getVehicles = asyncHandler(async (req, res) => {
   const filters = req.query;
   let filteredVehicles = vehicles;
 
-  if (filters) {
+  if (JSON.stringify(filters) !== '{}') {
     filteredVehicles = vehicles.filter((vehicle) => {
       let isValid = true;
       for (key in filters) {

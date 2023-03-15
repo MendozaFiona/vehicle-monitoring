@@ -28,13 +28,9 @@ const dispatchSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add location (to)"],
     },
-    date_departure: {
+    datetime_departure: {
       type: Date,
-      required: [true, "Please add date"],
-    },
-    time_departure: {
-      type: String,
-      required: [true, "Please add time"],
+      required: [true, "Please add date and time"],
     },
     driver: {
       type: String,
@@ -47,11 +43,8 @@ const dispatchSchema = mongoose.Schema(
     fuel_used: {
       type: Number,
     },
-    date_arrival: {
+    datetime_arrival: {
       type: Date,
-    },
-    time_arrival: {
-      type: String,
     },
     status: {
       type: String,

@@ -11,13 +11,46 @@ const getDispatches = asyncHandler(async (req, res) => {
   const filters = req.query;
   let filteredDispatches = dispatches;
 
-  if (filters) {
-    filteredDispatches = dispatches.filter((dispatch) => {
-      let isValid = true;
-      for (key in filters) {
-        isValid = isValid && dispatch[key] == filters[key];
+  if (JSON.stringify(filters) !== "{}") {
+    const {
+      date_departure_from,
+      time_departure_from,
+      date_departure_to,
+      time_departure_to,
+    } = filters;
+
+    if (
+      (!date_departure_from && time_departure_from) ||
+      (!date_departure_to && time_departure_to)
+    ) {
+      res.status(400);
+      throw new Error("Invalid Input");
+    }
+
+    const condition = {};
+
+    if (date_departure_from) {
+      if (time_departure_from) {
+        condition["$gte"] = new Date(
+          date_departure_from + " " + time_departure_from
+        );
+      } else {
+        condition["$gte"] = new Date(date_departure_from);
       }
-      return isValid;
+    }
+
+    if (date_departure_to) {
+      if (time_departure_to) {
+        condition["$lte"] = new Date(
+          date_departure_to + " " + time_departure_to
+        );
+      } else {
+        condition["$lte"] = new Date(date_departure_to);
+      }
+    }
+
+    filteredDispatches = await Dispatch.find({
+      datetime_departure: condition,
     });
   }
 
@@ -53,6 +86,25 @@ const addDispatch = asyncHandler(async (req, res) => {
     throw new Error("Please add all fields");
   }
 
+  const datetoday = new Date().toLocaleDateString("fr-ca");
+
+  if (date_departure < datetoday) {
+    res.status(400);
+    throw new Error("Invalid departure date");
+  }
+
+  const timenow = new Date(Date.now() - 60000).toLocaleTimeString("en-us", {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+  if(date_departure === datetoday && time_departure < timenow){
+    res.status(400);
+    throw new Error("Invalid departure time");
+  }
+
+  const datetime_departure = new Date(date_departure + " " + time_departure);
   const vehicle = await Vehicle.findById(req.body.id);
 
   if (!vehicle) {
@@ -67,8 +119,7 @@ const addDispatch = asyncHandler(async (req, res) => {
     load_capacity,
     from_location,
     to_location,
-    date_departure,
-    time_departure,
+    datetime_departure,
     driver,
     palero,
     status: "ongoing",
@@ -113,9 +164,15 @@ const updateDispatch = asyncHandler(async (req, res) => {
     throw new Error("User not authorized");
   }
 
+  const datetime_arrival = new Date(date_arrival + " " + time_arrival);
+
   const updatedDispatch = await Dispatch.findByIdAndUpdate(
     req.params.id,
-    { ...req.body, status: "completed" },
+    {
+      fuel_used,
+      datetime_arrival,
+      status: "completed",
+    },
     { new: true }
   );
 

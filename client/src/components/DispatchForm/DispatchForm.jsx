@@ -14,6 +14,7 @@ const DispatchForm = ({
       [e.target.name]: e.target.value,
     }));
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid">
@@ -47,6 +48,7 @@ const DispatchForm = ({
             id="load_capacity"
             name="load_capacity"
             min={0.1}
+            step="any"
             value={formData.load_capacity}
             placeholder="Load Capacity (kg)"
             required
@@ -87,6 +89,7 @@ const DispatchForm = ({
           Date of Departure
           <input
             type="date"
+            min={new Date().toLocaleDateString("fr-ca")}
             id="date_departure"
             name="date_departure"
             value={formData.date_departure}
@@ -99,6 +102,15 @@ const DispatchForm = ({
           Time of Departure
           <input
             type="time"
+            min={
+              formData.date_departure === new Date().toLocaleDateString("fr-ca")
+                ? new Date(Date.now() - 60000).toLocaleTimeString("en-us", {
+                    hour12: false,
+                    hour: "numeric",
+                    minute: "numeric",
+                  })
+                : ""
+            }
             id="time_departure"
             name="time_departure"
             value={formData.time_departure}

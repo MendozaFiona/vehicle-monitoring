@@ -69,14 +69,17 @@ const DispatchItems = ({ setShow, formData, setFormData }) => {
                 <td>{dispatch.load_capacity} kg</td>
                 <td>{dispatch.from_location}</td>
                 <td>{dispatch.to_location}</td>
-                <td>{new Date(dispatch.date_departure).toDateString()}</td>
                 <td>
-                  {new Date(
-                    "1970-01-01T" + dispatch.time_departure + "Z"
-                  ).toLocaleTimeString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                  })}
+                  {new Date(dispatch.datetime_departure).toLocaleDateString()}
+                </td>
+                <td>
+                  {new Date(dispatch.datetime_departure).toLocaleTimeString(
+                    "en-US",
+                    {
+                      hour: "numeric",
+                      minute: "numeric",
+                    }
+                  )}
                 </td>
                 <td>{dispatch.driver}</td>
                 <td>{dispatch.palero}</td>
@@ -84,18 +87,19 @@ const DispatchItems = ({ setShow, formData, setFormData }) => {
                   {dispatch.fuel_used ? dispatch.fuel_used + " L" : "N/A"}
                 </td>
                 <td>
-                  {dispatch.date_arrival
-                    ? new Date(dispatch.date_arrival).toDateString()
+                  {dispatch.datetime_arrival
+                    ? new Date(dispatch.datetime_arrival).toLocaleDateString()
                     : "N/A"}
                 </td>
                 <td>
-                  {dispatch.time_arrival
-                    ? new Date(
-                        "1970-01-01T" + dispatch.time_arrival + "Z"
-                      ).toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "numeric",
-                      })
+                  {dispatch.datetime_arrival
+                    ? new Date(dispatch.datetime_arrival).toLocaleTimeString(
+                        "en-US",
+                        {
+                          hour: "numeric",
+                          minute: "numeric",
+                        }
+                      )
                     : "N/A"}
                 </td>
               </tr>

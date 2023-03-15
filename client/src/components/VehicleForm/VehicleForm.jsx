@@ -95,6 +95,7 @@ const VehicleForm = ({
           <input
             type="number"
             min={0.1}
+            step="any"
             id="vehicle_capacity"
             name="vehicle_capacity"
             value={formData.vehicle_capacity}
@@ -124,6 +125,7 @@ const VehicleForm = ({
           <input
             type="number"
             min={0.1}
+            step="any"
             id="fuel_tank"
             name="fuel_tank"
             value={formData.fuel_tank}

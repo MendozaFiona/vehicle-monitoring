@@ -52,6 +52,7 @@ const DispatchSearch = () => {
               id="time_departure_from"
               name="time_departure_from"
               value={formData.time_departure_from}
+              disabled={formData.date_departure_from === ""}
               onChange={handleChange}
             />
           </div>
@@ -73,6 +74,7 @@ const DispatchSearch = () => {
               id="time_departure_to"
               name="time_departure_to"
               value={formData.time_departure_to}
+              disabled={formData.date_departure_to === ""}
               onChange={handleChange}
             />
           </div>

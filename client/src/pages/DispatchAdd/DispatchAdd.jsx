@@ -10,7 +10,7 @@ import Popup from "../../components/Popup";
 import DispatchFilter from "../../components/DispatchSelect";
 import { initialDispatchData } from "../../utils/data";
 import { useDispatch, useSelector } from "react-redux";
-import { addDispatch } from "../../reducer/dispatch/dispatchSlice";
+import { addDispatch, reset } from "../../reducer/dispatch/dispatchSlice";
 import { toast } from "react-toastify";
 
 const DispatchAdd = () => {
@@ -26,6 +26,7 @@ const DispatchAdd = () => {
     if (!res.error) {
       toast.success("Successfully Added Dispatch");
       setFormData(initialDispatchData);
+      dispatch(reset());
     } else {
       toast.error(res.payload);
     }

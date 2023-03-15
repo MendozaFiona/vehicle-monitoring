@@ -13,6 +13,7 @@ const DispatchCompleteForm = ({
       [e.target.name]: e.target.value,
     }));
   };
+
   return (
     <StyledForm>
       <form onSubmit={handleSubmit}>
@@ -21,6 +22,7 @@ const DispatchCompleteForm = ({
           <input
             type="number"
             min={0.1}
+            step="any"
             id="fuel_used"
             name="fuel_used"
             value={formData.fuel_used}
