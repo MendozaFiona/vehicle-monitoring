@@ -16,7 +16,16 @@ const getVehicles = asyncHandler(async (req, res) => {
     filteredVehicles = vehicles.filter((vehicle) => {
       let isValid = true;
       for (key in filters) {
-        isValid = isValid && vehicle[key] == filters[key];
+        if (key === "platenum") {
+          isValid =
+            isValid &&
+            vehicle[key].toUpperCase().includes(filters[key].toUpperCase());
+        } else {
+          isValid =
+            isValid &&
+            vehicle[key].toString().toUpperCase() ==
+              filters[key].toString().toUpperCase();
+        }
       }
       return isValid;
     });

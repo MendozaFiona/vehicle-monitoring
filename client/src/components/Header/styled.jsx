@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledHeader = styled.div`
   background-color: #17252a;
   border-bottom: 1px solid #17252a;
-  width: 100%;
+  width: 100vw;
 `;
 
 export const StyledNav = styled.nav`

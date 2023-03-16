@@ -16,6 +16,7 @@ export const StyledSideContent = styled.div`
   background-color: #17252a;
   width: 100%;
   height: 100vh;
+  border-bottom-right-radius: 10px;
 
   img {
     width: 60%;
@@ -138,10 +139,6 @@ export const StyledTable = styled.div`
 
     th {
       font-size: 18px;
-    }
-
-    .no-border {
-      border: 0;
     }
 
     button {

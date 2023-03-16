@@ -10,10 +10,36 @@ const DispatchSearch = () => {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+    const name = e.target.name;
+    const value = e.target.value;
+    let dependent,
+      depVal,
+      depExists = false;
+
+    if (name === "date_departure_from") {
+      dependent = "time_departure_from";
+      depVal = value === "" ? "" : "00:00";
+      depExists = true;
+    }
+
+    if (name === "date_departure_to") {
+      dependent = "time_departure_to";
+      depVal = value === "" ? "" : "23:59";
+      depExists = true;
+    }
+
+    if (depExists) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+        [dependent]: depVal,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const handleReset = () => {
@@ -25,12 +51,13 @@ const DispatchSearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newData = Object.fromEntries(
-      Object.entries(formData).filter(([key, value]) => value !== "")
-    );
-    const params = queryString.stringify(newData);
-    dispatch(getDispatches(params));
+    if (formData !== initialDispatchFilterData) {
+      const newData = Object.fromEntries(
+        Object.entries(formData).filter(([key, value]) => value !== "")
+      );
+      const params = queryString.stringify(newData);
+      dispatch(getDispatches(params));
+    }
   };
 
   return (
@@ -83,7 +110,10 @@ const DispatchSearch = () => {
           <button onClick={handleReset} type="button" disabled={false}>
             Reset
           </button>
-          <button type="submit" disabled={false}>
+          <button
+            type="submit"
+            disabled={formData === initialDispatchFilterData}
+          >
             Go
           </button>
         </div>

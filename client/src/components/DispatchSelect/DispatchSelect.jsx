@@ -42,6 +42,7 @@ const DispatchSelect = ({ setFormData, setShow }) => {
             <table>
               <thead>
                 <tr>
+                  <td></td>
                   <th scope="col">Plate #</th>
                   <th scope="col">Brand</th>
                   <th scope="col">Model</th>
@@ -55,15 +56,7 @@ const DispatchSelect = ({ setFormData, setShow }) => {
               <tbody>
                 {vehicles.map((vehicle) => (
                   <tr key={vehicle._id}>
-                    <td>{vehicle.platenum}</td>
-                    <td>{vehicle.brand}</td>
-                    <td>{vehicle.model}</td>
-                    <td>{vehicle.year}</td>
-                    <td>{vehicle.vehicle_type_name}</td>
-                    <td>{vehicle.vehicle_capacity} kg</td>
-                    <td>{vehicle.fuel_type_name}</td>
-                    <td>{vehicle.fuel_tank} L</td>
-                    <td className="no-border">
+                    <td>
                       <button
                         onClick={() =>
                           handleSelect(vehicle._id, vehicle.platenum)
@@ -72,6 +65,14 @@ const DispatchSelect = ({ setFormData, setShow }) => {
                         select
                       </button>
                     </td>
+                    <td>{vehicle.platenum}</td>
+                    <td>{vehicle.brand}</td>
+                    <td>{vehicle.model}</td>
+                    <td>{vehicle.year}</td>
+                    <td>{vehicle.vehicle_type_name}</td>
+                    <td>{vehicle.vehicle_capacity} kg</td>
+                    <td>{vehicle.fuel_type_name}</td>
+                    <td>{vehicle.fuel_tank} L</td>
                   </tr>
                 ))}
               </tbody>
