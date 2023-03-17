@@ -34,6 +34,28 @@ const getVehicles = asyncHandler(async (req, res) => {
   res.status(200).json(filteredVehicles);
 });
 
+// @desc check if plate number exists
+// @route GET /api/vehicles/check
+// @access Private
+const checkPlatenum = asyncHandler(async (req, res) => {
+  const vehicles = await Vehicle.find();
+
+  const platenum = req.body.platenum;
+  let exists = false;
+
+  if (platenum) {
+    vehicles.every((vehicle) => {
+      if (vehicle["platenum"].toUpperCase() === platenum.toUpperCase()) {
+        exists = true;
+        return false;
+      }
+      return true;
+    });
+  }
+
+  res.status(200).json(exists);
+});
+
 // @desc Create vehicle
 // @route POST /api/vehicles
 // @access Private
@@ -176,6 +198,7 @@ const deleteVehicle = asyncHandler(async (req, res) => {
 
 module.exports = {
   getVehicles,
+  checkPlatenum,
   addVehicle,
   updateVehicle,
   deleteVehicle,

@@ -3,6 +3,7 @@ import vehicleService from "./vehicleService";
 
 const initialState = {
   vehicles: [],
+  platenumDoesExist: false,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -16,6 +17,25 @@ export const addVehicle = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.user.token;
       return await vehicleService.addVehicle(vehicleData, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// check if platenum exists
+export const checkPlatenum = createAsyncThunk(
+  "vehicles/check",
+  async (data, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.user.token;
+      return await vehicleService.checkPlatenum(data, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -102,6 +122,20 @@ export const vehicleSlice = createSlice({
         state.vehicles.push(action.payload);
       })
       .addCase(addVehicle.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+
+      .addCase(checkPlatenum.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(checkPlatenum.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.platenumDoesExist = action.payload;
+      })
+      .addCase(checkPlatenum.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

@@ -10,6 +10,7 @@ const vehicleSchema = mongoose.Schema(
     platenum: {
       type: String,
       required: [true, "Please add vehicle plate number"],
+      unique: true,
     },
     brand: {
       type: String,

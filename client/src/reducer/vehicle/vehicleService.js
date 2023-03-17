@@ -15,6 +15,19 @@ const addVehicle = async (vehicleData, token) => {
   return response.data;
 };
 
+// check if platenum exists
+const checkPlatenum = async (data, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.post(API_URL + "check", data, config);
+
+  return response.data;
+};
+
 // get user vehicles
 const getVehicles = async (params, token) => {
   const config = {
@@ -58,6 +71,7 @@ const deleteVehicle = async (vehicleId, token) => {
 
 const vehicleService = {
   getVehicles,
+  checkPlatenum,
   addVehicle,
   updateVehicle,
   deleteVehicle,

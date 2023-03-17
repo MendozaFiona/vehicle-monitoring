@@ -40,6 +40,7 @@ const SearchFilter = ({ isDispatch = false }) => {
         setFormData={setFormData}
         buttonLabel="Go"
         required={false}
+        type="search"
       />
       <button className="fm-reset" onClick={handleReset}>
         Reset

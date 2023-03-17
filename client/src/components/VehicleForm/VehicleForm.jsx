@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import TypesVehicle from "../TypesVehicle";
 import TypesFuel from "../TypesFuel";
+import { useDispatch, useSelector } from "react-redux";
+import { checkPlatenum } from "../../reducer/vehicle/vehicleSlice";
+import { StyledError } from "./styled";
 
 const VehicleForm = ({
   isLoading,
@@ -9,18 +12,43 @@ const VehicleForm = ({
   setFormData,
   buttonLabel = "Submit",
   required = true,
+  type = "form",
 }) => {
+  const dispatch = useDispatch();
+  const { isLoading: isPending, platenumDoesExist } = useSelector(
+    (state) => state.vehicles
+  );
+
+  let timer;
+
+  const request = (value) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      dispatch(checkPlatenum(value));
+    }, 300);
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounceRequest = useCallback((value) => request(value), []);
+
   const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+
+    if (name === "platenum" && type === "form" && !isPending) {
+      debounceRequest({ [name]: value });
+    }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid">
         <label htmlFor="platenum">
-          Plate Number
+          Plate Number {platenumDoesExist && <StyledError>PLATE NO. ALREADY EXISTS</StyledError>}
           <input
             type="text"
             id="platenum"
@@ -136,7 +164,10 @@ const VehicleForm = ({
         </label>
       </div>
 
-      <button type="submit" disabled={isLoading}>
+      <button
+        type="submit"
+        disabled={isLoading || isPending || platenumDoesExist}
+      >
         {buttonLabel}
       </button>
     </form>
