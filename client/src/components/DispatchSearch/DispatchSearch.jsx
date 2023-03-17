@@ -44,7 +44,7 @@ const DispatchSearch = () => {
 
   const handleReset = () => {
     if (formData !== initialDispatchFilterData) {
-      dispatch(getDispatches());
+      dispatch(getDispatches("page=1"));
       setFormData(initialDispatchFilterData);
     }
   };

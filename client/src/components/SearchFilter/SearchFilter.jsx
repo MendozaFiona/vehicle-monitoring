@@ -26,7 +26,7 @@ const SearchFilter = ({ isDispatch = false }) => {
 
   const handleReset = () => {
     if (formData !== initialVehicleData) {
-      dispatch(getVehicles());
+      dispatch(getVehicles("page=1"));
       setFormData(initialVehicleData);
     }
   };

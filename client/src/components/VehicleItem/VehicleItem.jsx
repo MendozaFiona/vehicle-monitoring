@@ -12,17 +12,21 @@ import { StyledAccordion, StyledTitle } from "./styled";
 import Popup from "../../components/Popup";
 import Spinner from "../Spinner";
 import NoDataDisplay from "../NoDataDisplay";
+import Pagination from "../Pagination";
 
 const VehicleItem = () => {
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState(null);
+  const [page, setPage] = useState(1);
   const { vehicles, isLoading, isError, message } = useSelector(
     (state) => state.vehicles
   );
 
+  const { results, next, previous, totalPages, currentPage } = vehicles;
+
   useEffect(() => {
-    dispatch(getVehicles());
+    dispatch(getVehicles(`page=${page}`));
 
     if (isError) {
       toast.error(message);
@@ -32,7 +36,7 @@ const VehicleItem = () => {
       console.log("un/mount vehicle list");
       dispatch(reset());
     };
-  }, [isError, message, dispatch]);
+  }, [isError, message, dispatch, page]);
 
   if (isLoading) {
     return <Spinner />;
@@ -74,37 +78,49 @@ const VehicleItem = () => {
   return (
     <>
       {showPopup && popupContent}
-      {vehicles?.length > 0
-        ? vehicles.map((vehicle) => (
-            <StyledAccordion key={vehicle._id}>
-              <summary>
-                <StyledTitle> {vehicle.platenum}</StyledTitle>
-                <div className="grid">
-                  <button
-                    onClick={() => {
-                      handlePopup({
-                        data: vehicle,
-                        method: "edit",
-                      });
-                    }}
-                  >
-                    EDIT
-                  </button>
-                  <button
-                    onClick={() => {
-                      handlePopup({ data: vehicle, method: "delete" });
-                    }}
-                  >
-                    DELETE
-                  </button>
-                </div>
-              </summary>
-              <VehicleTable vehicle={vehicle} />
+      {results?.length > 0 ? (
+        results.map((vehicle) => (
+          <StyledAccordion key={vehicle._id}>
+            <summary>
+              <StyledTitle> {vehicle.platenum}</StyledTitle>
+              <div className="grid">
+                <button
+                  onClick={() => {
+                    handlePopup({
+                      data: vehicle,
+                      method: "edit",
+                    });
+                  }}
+                >
+                  EDIT
+                </button>
+                <button
+                  onClick={() => {
+                    handlePopup({ data: vehicle, method: "delete" });
+                  }}
+                >
+                  DELETE
+                </button>
+              </div>
+            </summary>
+            <VehicleTable vehicle={vehicle} />
 
-              {/* <p>{vehicle.status}</p> not added yet */}
-            </StyledAccordion>
-          ))
-        : <NoDataDisplay />}
+            {/* <p>{vehicle.status}</p> not added yet */}
+          </StyledAccordion>
+        ))
+      ) : (
+        <NoDataDisplay />
+      )}
+      {totalPages && (
+        <Pagination
+          totalPages={totalPages}
+          next={next}
+          previous={previous}
+          page={page}
+          currentPage={currentPage}
+          setPage={setPage}
+        />
+      )}
     </>
   );
 };

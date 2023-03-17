@@ -25,7 +25,7 @@ const VehicleEdit = ({ data, setShow }) => {
     if (!res.error) {
       setShow(false);
       toast.success("Successfully Updated Vehicle");
-      dispatch(getVehicles());
+      dispatch(getVehicles("page=1"));
     }
   };
 

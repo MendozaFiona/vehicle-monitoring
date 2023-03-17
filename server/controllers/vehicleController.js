@@ -10,10 +10,39 @@ const getVehicles = asyncHandler(async (req, res) => {
   const vehicles = await Vehicle.find({ user: req.user.id });
 
   const filters = req.query;
-  let filteredVehicles = vehicles;
+  let filteredVehicles = { results: vehicles };
 
-  if (JSON.stringify(filters) !== "{}") {
-    filteredVehicles = vehicles.filter((vehicle) => {
+  if (filters.page) {
+    const page = parseInt(filters.page);
+    const limit = 10;
+    const totalPages = Math.ceil(vehicles.length / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    filteredVehicles.results = vehicles.slice(startIndex, endIndex);
+    filteredVehicles.currentPage = page;
+
+    if (totalPages > 0) {
+      filteredVehicles.totalPages = totalPages;
+    }
+
+    if (endIndex < vehicles.length) {
+      filteredVehicles.next = {
+        page: page + 1,
+        limit,
+      };
+    }
+
+    if (startIndex > 0) {
+      filteredVehicles.previous = {
+        page: page - 1,
+        limit,
+      };
+    }
+  }
+
+  if (JSON.stringify(filters) !== "{}" && filters.page === undefined) {
+    filteredVehicles.results = vehicles.filter((vehicle) => {
       let isValid = true;
       for (key in filters) {
         if (key === "platenum") {

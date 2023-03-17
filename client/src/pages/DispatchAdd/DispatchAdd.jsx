@@ -7,7 +7,7 @@ import {
 } from "../../components/styled";
 import DispatchForm from "../../components/DispatchForm";
 import Popup from "../../components/Popup";
-import DispatchFilter from "../../components/DispatchSelect";
+import DispatchSelect from "../../components/DispatchSelect";
 import { initialDispatchData } from "../../utils/data";
 import { useDispatch, useSelector } from "react-redux";
 import { addDispatch, reset } from "../../reducer/dispatch/dispatchSlice";
@@ -40,7 +40,7 @@ const DispatchAdd = () => {
         {showPopup && (
           <Popup
             content={
-              <DispatchFilter
+              <DispatchSelect
                 setFormData={setFormData}
                 setShow={setShowPopup}
               />

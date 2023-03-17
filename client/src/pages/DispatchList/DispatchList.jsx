@@ -27,7 +27,7 @@ const DispatchList = () => {
 
     if (!res.error) {
       toast.success("Successfully Completed Dispatch");
-      dispatch(getDispatches());
+      dispatch(getDispatches("page=1"));
       setFormData(initialCompleteDispatchData);
       setShowPopup(false);
     }

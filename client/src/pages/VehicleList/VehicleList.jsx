@@ -20,7 +20,7 @@ const VehicleList = () => {
 
   const handleSubmit = async () => {
     const params =
-      plateNum !== "" ? queryString.stringify({ platenum: plateNum }) : null;
+      plateNum !== "" ? queryString.stringify({ platenum: plateNum }) : "page=1";
     dispatch(getVehicles(params));
   };
 

@@ -9,9 +9,38 @@ const getDispatches = asyncHandler(async (req, res) => {
   const dispatches = await Dispatch.find({ user: req.user.id });
 
   const filters = req.query;
-  let filteredDispatches = dispatches;
+  let filteredDispatches = { results: dispatches };
 
-  if (JSON.stringify(filters) !== "{}") {
+  if (filters.page) {
+    const page = parseInt(filters.page);
+    const limit = 10;
+    const totalPages = Math.ceil(dispatches.length / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    filteredDispatches.results = dispatches.slice(startIndex, endIndex);
+    filteredDispatches.currentPage = page;
+
+    if (totalPages > 0) {
+      filteredDispatches.totalPages = totalPages;
+    }
+
+    if (endIndex < dispatches.length) {
+      filteredDispatches.next = {
+        page: page + 1,
+        limit,
+      };
+    }
+
+    if (startIndex > 0) {
+      filteredDispatches.previous = {
+        page: page - 1,
+        limit,
+      };
+    }
+  }
+
+  if (JSON.stringify(filters) !== "{}" && filters.page === undefined) {
     const {
       date_departure_from,
       time_departure_from,
@@ -49,7 +78,7 @@ const getDispatches = asyncHandler(async (req, res) => {
       }
     }
 
-    filteredDispatches = await Dispatch.find({
+    filteredDispatches.results = await Dispatch.find({
       datetime_departure: condition,
     });
   }
@@ -99,7 +128,7 @@ const addDispatch = asyncHandler(async (req, res) => {
     minute: "numeric",
   });
 
-  if(date_departure === datetoday && time_departure < timenow){
+  if (date_departure === datetoday && time_departure < timenow) {
     res.status(400);
     throw new Error("Invalid departure time");
   }

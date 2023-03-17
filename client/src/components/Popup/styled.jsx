@@ -20,6 +20,8 @@ export const StyledPopup = styled.div`
     border: 5px solid #17252a;
     position: relative;
     text-align: center;
+    height: 500px;
+    overflow-x: auto;
 
     .content {
       padding: 20px;
